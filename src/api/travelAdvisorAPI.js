@@ -15,7 +15,7 @@ export const getPlacesData = async (type, sw, ne) => {
         'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
       },
     });
-
+console.log("test api",data)
     return data;
   } catch (error) {
     console.log(error);
@@ -32,7 +32,6 @@ export const getWeatherData = async (lat, lng) => {
           'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
         },
       });
-
       return data;
     }
   } catch (error) {
