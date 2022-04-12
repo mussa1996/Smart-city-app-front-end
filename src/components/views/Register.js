@@ -1,93 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Form from "../../utilities/Forms";
-import { HttpRequest } from "../../helper/httpRequest";
-import cogoToast from "cogo-toast";
-import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-const Register = () => {
-  const [business_name, setBusiness_name] = useState("");
-  const [owner_name, setOwner_name] = useState("");
-  const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
-  const [business_type, setBusiness_type] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [validate, setValidate] = useState({});
+import userForm from "./userForm";
+const Register = (submitForm) => {
+  const { handleChange, handleForm, errors, values } = userForm(submitForm);
+  const [validate] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 
-  const validateRegister = () => {
-    let isValid = true;
-
-    let validator = Form.validator({
-      business_name: {
-        value: business_name,
-        isRequired: true,
-      },
-      owner_name: {
-        value: owner_name,
-        isRequired: true,
-      },
-      address: {
-        value: address,
-        isRequired: true,
-      },
-      phone: {
-        value: phone,
-        isRequired: true,
-      },
-      business_type: {
-        value: business_type,
-        isRequired: true,
-      },
-      email: {
-        value: email,
-        isRequired: true,
-        isEmail: true,
-      },
-      password: {
-        value: password,
-        isRequired: true,
-        minLength: 6,
-      },
-    });
-
-    if (validator !== null) {
-      setValidate({
-        validate: validator.errors,
-      });
-
-      isValid = false;
-    }
-    return isValid;
-  };
-
-  // const register = (e) => {
-  //     e.preventDefault();
-
-  //     const validate = validateRegister();
-
-  //     if (validate) {
-  //         setValidate({});
-  //         setName('');
-  //         setUsername('')
-  //         setEmail('')
-  //         setPassword('');
-  //         alert('Successfully Register User');
-  //     }
-  // }
-  const handleForm = async (e) => {
-    e.preventDefault();
-    const resp = await HttpRequest(
-      "POST",
-      "http://localhost:4200/api/use/signUp",
-      validateRegister()
-    );
-    console.log(resp);
-    if (!resp.errors) {
-      cogoToast.success("Successfully Register User");
-    }
-  };
+ 
   const togglePassword = (e) => {
     if (showPassword) {
       setShowPassword(false);
@@ -124,12 +44,13 @@ const Register = () => {
                     }`}
                     id="business_name"
                     name="business_name"
-                    value={business_name}
+                    value={values.business_name}
+                    onChange={handleChange}
                     placeholder="Business Name"
-                    onChange={(e) => setBusiness_name(e.target.value)}
+                    // onChange={(e) => setBusiness_name(e.target.value)}
                   />
 
-                  <div
+                  {/* <div
                     className={`invalid-feedback text-start ${
                       validate.validate && validate.validate.business_name
                         ? "d-block"
@@ -139,7 +60,10 @@ const Register = () => {
                     {validate.validate && validate.validate.business_name
                       ? validate.validate.business_name[0]
                       : ""}
-                  </div>
+                  </div> */}
+                  {errors.business_name && (
+                    <p className="error">{errors.business_name}</p>
+                  )}
                 </div>
 
                 <div className="name mb-3">
@@ -152,22 +76,15 @@ const Register = () => {
                     }`}
                     id="owner_name"
                     name="owner_name"
-                    value={owner_name}
+                    value={values.owner_name}
+                    onChange={handleChange}
                     placeholder="Owner Name"
-                    onChange={(e) => setOwner_name(e.target.value)}
+                    // onChange={(e) => setOwner_name(e.target.value)}
                   />
 
-                  <div
-                    className={`invalid-feedback text-start ${
-                      validate.validate && validate.validate.owner_name
-                        ? "d-block"
-                        : "d-none"
-                    }`}
-                  >
-                    {validate.validate && validate.validate.owner_name
-                      ? validate.validate.owner_name[0]
-                      : ""}
-                  </div>
+                  {errors.owner_name && (
+                    <p className="error">{errors.owner_name}</p>
+                  )}
                 </div>
 
                 <div className="name mb-3">
@@ -180,42 +97,32 @@ const Register = () => {
                     }`}
                     id="address"
                     name="address"
-                    value={address}
+                    value={values.address}
+                    onChange={handleChange}
                     placeholder="Address"
-                    onChange={(e) => setAddress(e.target.value)}
+                    // onChange={(e) => setAddress(e.target.value)}
                   />
 
-                  <div
-                    className={`invalid-feedback text-start ${
-                      validate.validate && validate.validate.address
-                        ? "d-block"
-                        : "d-none"
-                    }`}
-                  >
-                    {validate.validate && validate.validate.address
-                      ? validate.validate.address[0]
-                      : ""}
-                  </div>
+                  {errors.address && <p className="error">{errors.address}</p>}
                 </div>
 
                 <div className="name mb-3">
-                  <PhoneInput
-                    placeholder="Enter phone number"
-                    value={phone}
-                    onChange={setPhone}
+                 
+                  <input
+                    type="text"
+                    className={`form-control ${
+                      validate.validate && validate.validate.phone
+                        ? "is-invalid "
+                        : ""
+                    }`}
+                    id="phone"
+                    name="phone"
+                    value={values.phone}
+                    onChange={handleChange}
+                    placeholder="Phone"
                   />
 
-                  <div
-                    className={`invalid-feedback text-start ${
-                      validate.validate && validate.validate.phone
-                        ? "d-block"
-                        : "d-none"
-                    }`}
-                  >
-                    {validate.validate && validate.validate.phone
-                      ? validate.validate.phone[0]
-                      : ""}
-                  </div>
+                  {errors.phone && <p className="error">{errors.phone}</p>}
                 </div>
 
                 <div className="name mb-3">
@@ -228,22 +135,14 @@ const Register = () => {
                     }`}
                     id="business_type"
                     name="business_type"
-                    value={business_type}
+                    value={values.business_type}
+                    onChange={handleChange}
                     placeholder="Business Type"
-                    onChange={(e) => setBusiness_type(e.target.value)}
                   />
 
-                  <div
-                    className={`invalid-feedback text-start ${
-                      validate.validate && validate.validate.business_type
-                        ? "d-block"
-                        : "d-none"
-                    }`}
-                  >
-                    {validate.validate && validate.validate.business_type
-                      ? validate.validate.business_type[0]
-                      : ""}
-                  </div>
+                  {errors.business_type && (
+                    <p className="error">{errors.business_type}</p>
+                  )}
                 </div>
 
                 <div className="email mb-3">
@@ -256,22 +155,12 @@ const Register = () => {
                     }`}
                     id="email"
                     name="email"
-                    value={email}
+                    value={values.email}
+                    onChange={handleChange}
                     placeholder="Email"
-                    onChange={(e) => setEmail(e.target.value)}
                   />
 
-                  <div
-                    className={`invalid-feedback text-start ${
-                      validate.validate && validate.validate.email
-                        ? "d-block"
-                        : "d-none"
-                    }`}
-                  >
-                    {validate.validate && validate.validate.email
-                      ? validate.validate.email[0]
-                      : ""}
-                  </div>
+                  {errors.email && <p className="error">{errors.email}</p>}
                 </div>
 
                 <div className="password mb-3">
@@ -285,9 +174,9 @@ const Register = () => {
                       }`}
                       name="password"
                       id="password"
-                      value={password}
+                      value={values.password}
+                      onChange={handleChange}
                       placeholder="Password"
-                      onChange={(e) => setPassword(e.target.value)}
                     />
 
                     <button
@@ -301,19 +190,10 @@ const Register = () => {
                         }
                       ></i>{" "}
                     </button>
-
-                    <div
-                      className={`invalid-feedback text-start ${
-                        validate.validate && validate.validate.password
-                          ? "d-block"
-                          : "d-none"
-                      }`}
-                    >
-                      {validate.validate && validate.validate.password
-                        ? validate.validate.password[0]
-                        : ""}
-                    </div>
                   </div>
+                  {errors.password && (
+                    <p className="error">{errors.password}</p>
+                  )}
                 </div>
                 <div className="text-center">
                   <button

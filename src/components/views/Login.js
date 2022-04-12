@@ -2,52 +2,52 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Form from '../../utilities/Forms'
 import "../../assets/scss/auth.scss";
-
-function App() {
+import LoginForm from "./loginForm";
+function App(submitForm) {
+    const { handleChange, handleLogin, errors, values } = LoginForm(submitForm);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [remember, setRemember] = useState(false);
     const [validate, setValidate] = useState({});
     const [showPassword, setShowPassword] = useState(false);
 
-    const validateLogin = () => {
-        let isValid = true;
+    // const validateLogin = () => {
+    //     let isValid = true;
 
-        let validator = Form.validator({
-            email: {
-                value: email,
-                isRequired: true,
-                isEmail: true
-            },
-            password: {
-                value: password,
-                isRequired: true,
-                minLength: 6
-            }
-        });
+    //     let validator = Form.validator({
+    //         email: {
+    //             value: email,
+    //             isRequired: true,
+    //             isEmail: true
+    //         },
+    //         password: {
+    //             value: password,
+    //             isRequired: true,
+    //             minLength: 6
+    //         }
+    //     });
 
-        if (validator !== null) {
-            setValidate({
-                validate: validator.errors
-            })
+    //     if (validator !== null) {
+    //         setValidate({
+    //             validate: validator.errors
+    //         })
 
-            isValid = false
-        }
-        return isValid;
-    }
+    //         isValid = false
+    //     }
+    //     return isValid;
+    // }
 
-    const authenticate = (e) => {
-        e.preventDefault();
+    // const authenticate = (e) => {
+    //     e.preventDefault();
 
-        const validate = validateLogin();
+    //     const validate = validateLogin();
 
-        if (validate) {
-            setValidate({});
-            setEmail('');
-            setPassword('');
-            alert('Successfully Login');
-        }
-    }
+    //     if (validate) {
+    //         setValidate({});
+    //         setEmail('');
+    //         setPassword('');
+    //     }
+    // }
 
     const togglePassword = (e) => {
         if (showPassword) {
@@ -68,20 +68,21 @@ function App() {
                     <div className="auth-body mx-auto">
                         <p>Login to your account</p>
                         <div className="auth-form-container text-start">
-                            <form className="auth-form" method="POST" onSubmit={authenticate} autoComplete={'off'}>
+                            <form className="auth-form" method="POST" onSubmit={handleLogin}  autoComplete={'off'}>
                                 <div className="email mb-3">
                                     <input type="email"
                                         className={`form-control ${validate.validate && validate.validate.email ? 'is-invalid ' : ''}`}
                                         id="email"
                                         name="email"
-                                        value={email}
+                                        value={values.email}
+                                        onChange={handleChange}
+
                                         placeholder="Email"
-                                        onChange={(e) => setEmail(e.target.value)}
                                     />
 
-                                    <div className={`invalid-feedback text-start ${(validate.validate && validate.validate.email) ? 'd-block' : 'd-none'}`} >
-                                        {(validate.validate && validate.validate.email) ? validate.validate.email[0] : ''}
-                                    </div>
+{errors.email && (
+                    <p className="error">{errors.email}</p>
+                  )}
                                 </div>
 
                                 <div className="password mb-3">
@@ -90,16 +91,17 @@ function App() {
                                             className={`form-control ${validate.validate && validate.validate.password ? 'is-invalid ' : ''}`}
                                             name="password"
                                             id="password"
-                                            value={password}
+                                            value={values.password}
+                                            onChange={handleChange}
                                             placeholder="Password"
-                                            onChange={(e) => setPassword(e.target.value)}
+                                           
                                         />
 
                                         <button type="button" className="btn btn-outline-primary btn-sm" onClick={(e) => togglePassword(e)} ><i className={showPassword ? 'far fa-eye' : 'far fa-eye-slash'} ></i> </button>
 
-                                        <div className={`invalid-feedback text-start ${(validate.validate && validate.validate.password) ? 'd-block' : 'd-none'}`} >
-                                            {(validate.validate && validate.validate.password) ? validate.validate.password[0] : ''}
-                                        </div>
+                                        {errors.password && (
+                    <p className="error">{errors.password}</p>
+                  )}
                                     </div>
 
 
