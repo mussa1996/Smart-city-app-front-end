@@ -1,54 +1,48 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Form from '../../utilities/Forms'
 import "../../assets/scss/auth.scss";
-import LoginForm from "./loginForm";
-function App(submitForm) {
-    const { handleChange, handleLogin, errors, values } = LoginForm(submitForm);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+import {signin} from '../../actions/LoginAction'
+import { connect } from 'react-redux'
+import cogoToast from 'cogo-toast';
+import validation from "../../helper/validation";
+
+function Login(props) {
+    const [errors, setErrors] = useState({})
+  const [values] = useState({
+      email: '',
+      password: ''
+  })
     const [remember, setRemember] = useState(false);
-    const [validate, setValidate] = useState({});
+    const [validate] = useState({});
     const [showPassword, setShowPassword] = useState(false);
 
-    // const validateLogin = () => {
-    //     let isValid = true;
 
-    //     let validator = Form.validator({
-    //         email: {
-    //             value: email,
-    //             isRequired: true,
-    //             isEmail: true
-    //         },
-    //         password: {
-    //             value: password,
-    //             isRequired: true,
-    //             minLength: 6
-    //         }
-    //     });
-
-    //     if (validator !== null) {
-    //         setValidate({
-    //             validate: validator.errors
-    //         })
-
-    //         isValid = false
-    //     }
-    //     return isValid;
-    // }
-
-    // const authenticate = (e) => {
-    //     e.preventDefault();
-
-    //     const validate = validateLogin();
-
-    //     if (validate) {
-    //         setValidate({});
-    //         setEmail('');
-    //         setPassword('');
-    //     }
-    // }
-
+    let [state, setState] = useState({})
+    const token  =localStorage.getItem('userToken')
+    const handleChange = (e) => {
+        setState({
+            ...state,
+            [e.target.id]:e.target.value
+        })
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+      
+        props.signIn(state)
+        if (props.login.error) {
+            cogoToast.error(
+                <div>
+                  <b>oops!</b>
+                    <div>{props.login.message}</div>
+                </div>
+              )
+            }
+    }
+    if (props.login.success) {
+        cogoToast.success("Successfully Login");
+        props.history.push('/dashboard')
+    }
+    
     const togglePassword = (e) => {
         if (showPassword) {
             setShowPassword(false);
@@ -68,21 +62,19 @@ function App(submitForm) {
                     <div className="auth-body mx-auto">
                         <p>Login to your account</p>
                         <div className="auth-form-container text-start">
-                            <form className="auth-form" method="POST" onSubmit={handleLogin}  autoComplete={'off'}>
+                            <form className="auth-form" method="POST" onSubmit={handleSubmit}  autoComplete={'off'}>
                                 <div className="email mb-3">
                                     <input type="email"
                                         className={`form-control ${validate.validate && validate.validate.email ? 'is-invalid ' : ''}`}
                                         id="email"
                                         name="email"
-                                        value={values.email}
+                                        // value={values.email}
                                         onChange={handleChange}
 
                                         placeholder="Email"
                                     />
-
-{errors.email && (
-                    <p className="error">{errors.email}</p>
-                  )}
+{errors.email && <p className="error">{errors.email}</p>}
+                  
                                 </div>
 
                                 <div className="password mb-3">
@@ -91,7 +83,7 @@ function App(submitForm) {
                                             className={`form-control ${validate.validate && validate.validate.password ? 'is-invalid ' : ''}`}
                                             name="password"
                                             id="password"
-                                            value={values.password}
+                                            // value={values.password}
                                             onChange={handleChange}
                                             placeholder="Password"
                                            
@@ -99,12 +91,10 @@ function App(submitForm) {
 
                                         <button type="button" className="btn btn-outline-primary btn-sm" onClick={(e) => togglePassword(e)} ><i className={showPassword ? 'far fa-eye' : 'far fa-eye-slash'} ></i> </button>
 
-                                        {errors.password && (
-                    <p className="error">{errors.password}</p>
-                  )}
+                  
                                     </div>
 
-
+                                    {errors.password && <p className="error">{errors.password}</p>}
                                     <div className="extra mt-3 row justify-content-between">
                                         <div className="col-6">
                                             <div className="form-check">
@@ -136,5 +126,15 @@ function App(submitForm) {
         </div>
     );
 }
-
-export default App;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signIn: (Credential)=>dispatch(signin(Credential))
+    }
+}
+const mapStateToProps = (state) => {
+    return {
+        login:state.login
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps) (Login);
+// export default App;

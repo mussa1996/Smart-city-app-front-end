@@ -1,13 +1,50 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import "react-phone-number-input/style.css";
-import userForm from "./userForm";
-const Register = (submitForm) => {
-  const { handleChange, handleForm, errors, values } = userForm(submitForm);
+
+import React, { useState } from 'react';
+import { Link} from "react-router-dom";
+import { connect } from 'react-redux';
+import signupAction from '../../actions/Signup.action';
+import cogoToast from 'cogo-toast';
+
+
+const Signup = (props) => {
   const [validate] = useState({});
   const [showPassword, setShowPassword] = useState(false);
-
- 
+  const [errors, setErrors] = useState({})
+  const [values, setValues] = useState({
+      business_name: '',
+      owner_name: '',
+      phone: '',
+      business_type: '',                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+      address: '',
+      email: '',
+      password: ''
+  })
+    let [state, setState] = useState({})
+    const handleChange = (e) => {
+        setState({
+            ...state,
+            [e.target.id]: e.target.value
+        })
+        // console.log(state)
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        props.signup(state)
+        console.log(state)
+       
+    }
+    if (props.signupState.success) {
+        cogoToast.success("Successfully Register User");
+    props.history.push('/login')
+}
+    if (props.signupState.errorOpen) {
+        cogoToast.error(
+            <div>
+              <b>oops!</b>
+                <div>{props.signupState.error}</div>
+            </div>
+          )
+        }
   const togglePassword = (e) => {
     if (showPassword) {
       setShowPassword(false);
@@ -31,7 +68,7 @@ const Register = (submitForm) => {
               <form
                 className="auth-form"
                 method="POST"
-                onSubmit={handleForm}
+                onSubmit={handleSubmit}
                 autoComplete={"off"}
               >
                 <div className="name mb-3">
@@ -44,23 +81,13 @@ const Register = (submitForm) => {
                     }`}
                     id="business_name"
                     name="business_name"
-                    value={values.business_name}
+                    // value={values.business_name}
                     onChange={handleChange}
                     placeholder="Business Name"
                     // onChange={(e) => setBusiness_name(e.target.value)}
                   />
 
-                  {/* <div
-                    className={`invalid-feedback text-start ${
-                      validate.validate && validate.validate.business_name
-                        ? "d-block"
-                        : "d-none"
-                    }`}
-                  >
-                    {validate.validate && validate.validate.business_name
-                      ? validate.validate.business_name[0]
-                      : ""}
-                  </div> */}
+                  
                   {errors.business_name && (
                     <p className="error">{errors.business_name}</p>
                   )}
@@ -76,7 +103,7 @@ const Register = (submitForm) => {
                     }`}
                     id="owner_name"
                     name="owner_name"
-                    value={values.owner_name}
+                    // value={values.owner_name}
                     onChange={handleChange}
                     placeholder="Owner Name"
                     // onChange={(e) => setOwner_name(e.target.value)}
@@ -97,7 +124,7 @@ const Register = (submitForm) => {
                     }`}
                     id="address"
                     name="address"
-                    value={values.address}
+                    // value={values.address}
                     onChange={handleChange}
                     placeholder="Address"
                     // onChange={(e) => setAddress(e.target.value)}
@@ -117,7 +144,7 @@ const Register = (submitForm) => {
                     }`}
                     id="phone"
                     name="phone"
-                    value={values.phone}
+                    // value={values.phone}
                     onChange={handleChange}
                     placeholder="Phone"
                   />
@@ -135,7 +162,7 @@ const Register = (submitForm) => {
                     }`}
                     id="business_type"
                     name="business_type"
-                    value={values.business_type}
+                    // value={values.business_type}
                     onChange={handleChange}
                     placeholder="Business Type"
                   />
@@ -155,7 +182,7 @@ const Register = (submitForm) => {
                     }`}
                     id="email"
                     name="email"
-                    value={values.email}
+                    // value={values.email}
                     onChange={handleChange}
                     placeholder="Email"
                   />
@@ -174,7 +201,7 @@ const Register = (submitForm) => {
                       }`}
                       name="password"
                       id="password"
-                      value={values.password}
+                      // value={values.password}
                       onChange={handleChange}
                       placeholder="Password"
                     />
@@ -220,4 +247,14 @@ const Register = (submitForm) => {
   );
 };
 
-export default Register;
+const mapDispatchToProps = (dispatch) => {
+  return {
+      signup: (credentials) => dispatch(signupAction(credentials))
+  }
+}
+const mapStateToProps = (state) => {
+  return {
+      signupState:state.signup
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

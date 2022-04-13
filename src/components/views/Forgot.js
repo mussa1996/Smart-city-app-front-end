@@ -1,11 +1,33 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Form from '../../utilities/Forms'
-
-const Forgot = () => {
-
+import {forget} from '../../actions/ForgetPassAction'
+import { connect } from 'react-redux'
+import cogoToast from 'cogo-toast';
+const Forgot = (props) => {
+    let [state, setState] = useState({})
     const [email, setEmail] = useState('');
     const [validate, setValidate] = useState({});
+    const token  =localStorage.getItem('resetToken')
+    const handleChange = (e) => {
+        setState({
+            ...state,
+            [e.target.id]:e.target.value
+        })
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        validateforgotPassword()
+        props.forGet(state)
+        alert('Reset password link is sent to '+state.email);
+        props.history.push('/login')
+
+
+        
+    }
+// const Forgot = () => {
+
+
 
     const validateforgotPassword = () => {
         let isValid = true;
@@ -28,17 +50,7 @@ const Forgot = () => {
         return isValid;
     }
 
-    const forgotPassword = (e) => {
-        e.preventDefault();
-
-        const validate = validateforgotPassword();
-
-        if (validate) {
-            alert('Reset password link is sent to '+email);
-            setValidate({});
-            setEmail('');
-        }
-    }
+  
 
     return (
         <div className="row g-0 auth-wrapper">
@@ -52,15 +64,16 @@ const Forgot = () => {
                     <div className="auth-body mx-auto">
                         <p>Forgot Password</p>
                         <div className="auth-form-container text-start">
-                            <form className="auth-form" method="POST" onSubmit={forgotPassword} autoComplete={'off'}>
+                            <form className="auth-form" method="POST" onSubmit={handleSubmit} autoComplete={'off'}>
                                 <div className="email mb-3">
                                     <input type="email"
                                         className={`form-control ${validate.validate && validate.validate.email ? 'is-invalid ' : ''}`}
                                         id="email"
                                         name="email"
-                                        value={email}
+                                        // value={email}
                                         placeholder="Email"
-                                        onChange={(e) => setEmail(e.target.value)}
+                                        onChange={handleChange}
+                                        // onChange={(e) => setEmail(e.target.value)}
                                     />
 
                                     <div className={`invalid-feedback text-start ${(validate.validate && validate.validate.email) ? 'd-block' : 'd-none'}`} >
@@ -84,4 +97,15 @@ const Forgot = () => {
     );
 }
 
-export default Forgot;
+// export default Forgot;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        forGet: (Credential)=>dispatch(forget(Credential))
+    }
+}
+const mapStateToProps = (state) => {
+    return {
+        login:state.login
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps) (Forgot);
