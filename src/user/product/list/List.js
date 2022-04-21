@@ -12,6 +12,7 @@ const columns: GridColDef[] = [
     { field: 'name', headerName: 'Product Name', width: 130 },
     { field: 'price', headerName: 'Product Price', width: 130 },
     { field: 'price_level', headerName: 'Price level', width: 130 },
+    { field: 'description', headerName: 'Description', width: 130 },
     { field: 'business_id', headerName: 'Business Name', width: 130 },
     { field: 'photo', headerName: 'Photo', width: 200 ,
     renderCell: (params) => {
@@ -23,7 +24,9 @@ const columns: GridColDef[] = [
           </div>
         );
       },
-}
+     
+},
+
     
 
 ];
@@ -108,8 +111,12 @@ const List=()=>{
         };
         
         return (
-
-            <div style={{ height: 400, width: '100%' }}>
+          <><div className="datatableTitle">
+            Add New User
+            <Link to="/product/new" className="link">
+              Add New
+            </Link>
+          </div><div style={{ height: 400, width: '100%' }}>
               <input type="text" placeholder='Search' className='search' onChange={handleSearch}></input>
               <DataGrid
                 rows={rowData}
@@ -117,9 +124,8 @@ const List=()=>{
                 pageSize={5}
                 getRowId={(row) => row._id}
                 rowsPerPageOptions={[5]}
-                checkboxSelection
-              />
-            </div>
+                checkboxSelection />
+            </div></>
           );
 
 

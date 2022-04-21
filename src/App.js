@@ -29,6 +29,7 @@ import UAwardList from './user/awards/list/List';
 import UServiceList from './user/service/list/List';
 import UProductList from './user/product/list/List';
 import New from './user/product/new/New';
+import { productInputs, userInputs } from "./user/product/formSource";
 import './App.css';
 const App = () => {
   const { darkMode } = useContext(DarkModeContext);
@@ -54,6 +55,13 @@ const App = () => {
         <Route path='/user/awardlist' component={UAwardList} />
         <Route path='/user/servicelist' component={UServiceList} />
         <Route path='/user/productlist' component={UProductList} />
+        <Route path='/product/new' render={()=>{
+          return <New inputs={productInputs}/>
+        }} />
+        {/* <Route
+                path="/product/new"
+                element={<New inputs={""} title="Add New User" />}
+              /> */}
         <ProtectedRoute component={Forgot} path="/forgot-password"/>
           <ProtectedRoute component={Resetpassword} path="/resetpassword"/>
         <Route path="/user-dashboard">
