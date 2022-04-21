@@ -1,26 +1,38 @@
 import "./single.scss";
-// import Chart from "../../components/chart/Chart";
 import List from "../list/List";
 import React, {useEffect,useState} from 'react';
 import {Link } from 'react-router-dom';
 import axios from 'axios';
+import { useParams } from "react-router-dom";
 const Single = () => {
-  const [business,setBusiness]=useState([]);
+  const queryParams = new URLSearchParams(window.location.pathname);
+  const params = window.location.pathname.split("/");
+  const id = params[params.length - 1];
+  const [award,setAward]=useState([]);
     const [search,setSearch]=useState('');
-    const getBusinessData=(id)=>{
-        axios.get(`http://localhost:4500/api/admin/getOne?id=${id}`)
-        .then(res=>{
-            setBusiness(res.data.data);
-        })
-        .catch(err=>{
-            console.log(err);
-        })
-    }
-    useEffect(()=>{
-        getBusinessData();
-    }
-    ,[])
-    const rowData=business;
+    
+    const handleView = (id) => {
+      const queryParams = new URLSearchParams(window.location.pathname);
+      const params = window.location.pathname.split("/");
+       id = params[params.length - 1];
+      axios.get(`http://localhost:4500/api/award/getOne?id=${id}`)
+      .then(res=>{
+          
+        setAward(res.data.award); 
+          console.log("test",res.data.award);
+          
+      })
+
+      .catch(err=>{
+          console.log(err);
+      })
+  };
+  useEffect(()=>{
+    handleView()
+}
+,[])
+const rowData=award
+console.log("user",award);
   return (
     <div className="single">
       {/* <Sidebar /> */}
@@ -28,42 +40,32 @@ const Single = () => {
         {/* <Navbar /> */}
         <div className="top">
           <div className="left">
-            <div className="editButton">Edit</div>
             <h1 className="title">Information</h1>
             <div className="item">
               <img
-                src={rowData.photo}
+                src={rowData.images}
                 alt=""
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">Business Details</h1>
+                <h1 className="itemTitle">Award Details</h1>
                 <div className="detailItem">
-                  <span className="itemKey">Business Name:</span>
-                  <span className="itemValue">{rowData.business_name}</span>
+                  <span className="itemKey">Award Type:</span>
+                  <span className="itemValue">{rowData.award_type}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Owner Name:</span>
-                  <span className="itemValue">{rowData.owners}</span>
+                  <span className="itemValue">{rowData.display_name}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Email:</span>
-                  <span className="itemValue">{rowData.email}</span>
+                  <span className="itemKey">Year:</span>
+                  <span className="itemValue">{rowData.year}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Phone:</span>
-                  <span className="itemValue">{rowData.phone}</span>
+                  <span className="itemKey">Business Name:</span>
+                  <span className="itemValue">{rowData.name}</span>
                 </div>
-                <div className="detailItem">
-                  <span className="itemKey">Address:</span>
-                  <span className="itemValue">
-                    {rowData.address}
-                  </span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Website:</span>
-                  <span className="itemValue">{rowData.website}</span>
-                </div>
+                
               </div>
             </div>
           </div>
@@ -72,7 +74,7 @@ const Single = () => {
           </div> */}
         </div>
         <div className="bottom">
-        <h1 className="title">Last Transactions</h1>
+        <h1 className="title">List of all awards</h1>
           <List/>
         </div>
       </div>

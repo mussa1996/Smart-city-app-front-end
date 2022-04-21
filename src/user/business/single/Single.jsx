@@ -1,26 +1,37 @@
 import "./single.scss";
-// import Chart from "../../components/chart/Chart";
 import List from "../list/List";
 import React, {useEffect,useState} from 'react';
 import {Link } from 'react-router-dom';
 import axios from 'axios';
+import { useParams } from "react-router-dom";
 const Single = () => {
-  const [business,setBusiness]=useState([]);
+  const queryParams = new URLSearchParams(window.location.pathname);
+  const params = window.location.pathname.split("/");
+  const id = params[params.length - 1];
+  const [user,setUser]=useState([]);
     const [search,setSearch]=useState('');
-    const getBusinessData=(id)=>{
-        axios.get(`http://localhost:4500/api/admin/getOne?id=${id}`)
-        .then(res=>{
-            setBusiness(res.data.data);
-        })
-        .catch(err=>{
-            console.log(err);
-        })
-    }
-    useEffect(()=>{
-        getBusinessData();
-    }
-    ,[])
-    const rowData=business;
+    
+    const handleView = (id) => {
+      const queryParams = new URLSearchParams(window.location.pathname);
+      const params = window.location.pathname.split("/");
+       id = params[params.length - 1];
+      axios.get(`http://localhost:4500/api/admin/getOne?id=${id}`)
+      .then(res=>{
+          
+          setUser(res.data.business); 
+          
+      })
+
+      .catch(err=>{
+          console.log(err);
+      })
+  };
+  useEffect(()=>{
+    handleView()
+}
+,[])
+const rowData=user
+console.log("user",user);
   return (
     <div className="single">
       {/* <Sidebar /> */}
@@ -44,7 +55,7 @@ const Single = () => {
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Owner Name:</span>
-                  <span className="itemValue">{rowData.owners}</span>
+                  <span className="itemValue">{rowData.owner_name}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Email:</span>
@@ -72,7 +83,7 @@ const Single = () => {
           </div> */}
         </div>
         <div className="bottom">
-        <h1 className="title">Last Transactions</h1>
+        <h1 className="title">List of all business</h1>
           <List/>
         </div>
       </div>

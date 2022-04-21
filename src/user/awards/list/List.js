@@ -79,7 +79,7 @@ const List=()=>{
               renderCell: (params) => {
                 return (
                   <div className="cellAction">
-                    <Link to="/single" style={{ textDecoration: "none" }}>
+                    <Link to={`/user/award/single/${params.row._id}`}style={{ textDecoration: "none" }}>
                       <div className="viewButton" onClick={() => handleView(params.row._id)} >View</div>
                     </Link>
                     <div

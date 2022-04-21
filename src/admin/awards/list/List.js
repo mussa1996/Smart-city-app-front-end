@@ -13,7 +13,7 @@ const columns: GridColDef[] = [
     { field: 'display_name', headerName: 'Award Name', width: 130 },
     { field: 'year', headerName: 'Year', width: 130 },
     { field: 'business_id', headerName: 'Business Name', width: 130 },
-    { field: 'photo', headerName: 'Photo', width: 200 ,
+    { field: 'images', headerName: 'Photo', width: 200 ,
     renderCell: (params) => {
       console.log("parama",params)
         return (
@@ -79,7 +79,7 @@ const List=()=>{
               renderCell: (params) => {
                 return (
                   <div className="cellAction">
-                    <Link to="/single" style={{ textDecoration: "none" }}>
+                    <Link to={`/award/single/${params.row._id}`} style={{ textDecoration: "none" }}>
                       <div className="viewButton" onClick={() => handleView(params.row._id)} >View</div>
                     </Link>
                     <div

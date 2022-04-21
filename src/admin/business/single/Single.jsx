@@ -1,5 +1,4 @@
 import "./single.scss";
-// import Chart from "../../components/chart/Chart";
 import List from "../list/List";
 import React, {useEffect,useState} from 'react';
 import {Link } from 'react-router-dom';
@@ -9,24 +8,8 @@ const Single = () => {
   const queryParams = new URLSearchParams(window.location.pathname);
   const params = window.location.pathname.split("/");
   const id = params[params.length - 1];
-  // console.log(id)
   const [user,setUser]=useState([]);
     const [search,setSearch]=useState('');
-    // const getOneData=()=>{
-    //   axios.get(`http://localhost:4500/api/admin/getOne?id=${id}`)
-    //     .then(res=>{
-    //       setUser(res.data.data);
-    //         console.log("service",res.data.data)
-    //     })
-    //     .catch(err=>{
-    //         console.log(err);
-    //     })
-    // }
-    // useEffect(()=>{
-    //   getOneData();
-    // }
-    // ,[])
-    // const rowData=user;
     
     const handleView = (id) => {
       const queryParams = new URLSearchParams(window.location.pathname);
@@ -100,7 +83,7 @@ console.log("user",user);
           </div> */}
         </div>
         <div className="bottom">
-        <h1 className="title">Last Transactions</h1>
+        <h1 className="title">List of all business</h1>
           <List/>
         </div>
       </div>

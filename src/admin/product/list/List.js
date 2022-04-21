@@ -12,6 +12,7 @@ const columns: GridColDef[] = [
     { field: 'name', headerName: 'Product Name', width: 130 },
     { field: 'price', headerName: 'Product Price', width: 130 },
     { field: 'price_level', headerName: 'Price level', width: 130 },
+    { field: 'description', headerName: 'Description', width: 130 },
     { field: 'business_id', headerName: 'Business Name', width: 130 },
     { field: 'photo', headerName: 'Photo', width: 200 ,
     renderCell: (params) => {
@@ -79,7 +80,7 @@ const List=()=>{
               renderCell: (params) => {
                 return (
                   <div className="cellAction">
-                    <Link to="/single" style={{ textDecoration: "none" }}>
+                    <Link to={`/product/single/${params.row._id}`} style={{ textDecoration: "none" }}>
                       <div className="viewButton" onClick={() => handleView(params.row._id)} >View</div>
                     </Link>
                     <div

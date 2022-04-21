@@ -1,7 +1,9 @@
+import './new.css'
 import {useState,useEffect} from 'react';
 import cogoToast from 'cogo-toast';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+
 function AddProduct(){
     const history = useHistory();
     const [product,setProduct]=useState('')
@@ -24,7 +26,7 @@ const handleSubmit=async(e)=>{
         history.push('/productlist');
     })
     .catch(err=>{
-        cogoToast.success('Product add failed',{position:'top-center'});
+        cogoToast.error('To add product failed, try again',{position:'top-center'});
         history.push('/product/new');
         console.log(err.message);
     })
@@ -33,17 +35,18 @@ const handleSubmit=async(e)=>{
    
 
     return (
-        <div>
-            <div className="col-sm-6 offset-sm-3">
-                <br/>
-  <input type="text" placeholder="Product Name" onChange={(e)=>setName(e.target.value)} className="form-control" /><br/>
-  <input type="text" placeholder="Price"  onChange={(e)=>setPrice(e.target.value)} className="form-control" /><br/>
-  <input type="text" placeholder="Price level"  onChange={(e)=>setPriceLevel(e.target.value)} className="form-control" /><br/>
-  <input type="text" placeholder="Description"  onChange={(e)=>setDescription(e.target.value)} className="form-control" /><br/>
-  <input type="file" placeholder="image" onChange={(e)=>setPhoto(e.target.files[0])} className="form-control" />
-  <button className="btn btn-primary" onClick={handleSubmit}>Add Product</button>
+        <div className="container">
+            <form>
+           
+  <input type="text" placeholder="Product Name" onChange={(e)=>setName(e.target.value)} className="form-control" required /><br/>
+  <input type="text" placeholder="Price"  onChange={(e)=>setPrice(e.target.value)} className="form-control" required/><br/>
+  <input type="text" placeholder="Price level"  onChange={(e)=>setPriceLevel(e.target.value)} className="form-control" required /><br/>
+  <input type="text" placeholder="Description"  onChange={(e)=>setDescription(e.target.value)} className="form-control" required/><br/>
+  <input type="file" placeholder="image" onChange={(e)=>setPhoto(e.target.files[0])} className="form-control" required />
+  <button  onClick={handleSubmit} className="btn">Add Product</button>
 
-               </div>
+               
+               </form>
         </div>
     )
 }

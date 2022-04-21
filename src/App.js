@@ -20,6 +20,12 @@ import AHeader from "./admin/adminDashboard/Header"
 import AMenu from "./admin/adminDashboard/Menu"
 import List from './admin/business/list/List';
 import Single from './admin/business/single/Single';
+import AwardSingle from './admin/awards/single/Single';
+import ProductSingle from './admin/product/single/Single';
+import ServiceSingle from './admin/service/single/Single';
+import UAwardSingle from './user/awards/single/Single';
+import UProductSingle from './user/product/single/Single';
+import UServiceSingle from './user/service/single/Single';
 import AwardList from './admin/awards/list/List';
 import ServiceList from './admin/service/list/List';
 import ProductList from './admin/product/list/List';
@@ -29,6 +35,8 @@ import UAwardList from './user/awards/list/List';
 import UServiceList from './user/service/list/List';
 import UProductList from './user/product/list/List';
 import New from './user/product/new/New';
+import AwardNew from './user/awards/new/New';
+import ServiceNew from './user/service/new/New';
 import { productInputs, userInputs } from "./user/product/formSource";
 import './App.css';
 const App = () => {
@@ -47,6 +55,12 @@ const App = () => {
         <Route path='/verification' component={Verify} />
         <Route path='/list' component={List} />
         <Route path='/single' component={Single} />
+        <Route path='/award/single' component={AwardSingle} />
+        <Route path='/product/single' component={ProductSingle} />
+        <Route path='/service/single' component={ServiceSingle} />
+        <Route path='/user/award/single' component={UAwardSingle} />
+        <Route path='/user/product/single' component={UProductSingle} />
+        <Route path='/user/service/single' component={UServiceSingle} />
         <Route path='/awardlist' component={AwardList} />
         <Route path='/servicelist' component={ServiceList} />
         <Route path='/productlist' component={ProductList} />
@@ -55,6 +69,8 @@ const App = () => {
         <Route path='/user/awardlist' component={UAwardList} />
         <Route path='/user/servicelist' component={UServiceList} />
         <Route path='/user/productlist' component={UProductList} />
+        <Route path='/award/new' component={AwardNew} />
+        <Route path='/service/new' component={ServiceNew} />
         <Route path='/product/new' render={()=>{
           return <New inputs={productInputs}/>
         }} />
