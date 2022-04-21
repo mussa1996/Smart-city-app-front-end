@@ -19,7 +19,7 @@ const Header = ({ onPlaceChanged, onLoad }) => {
           
         <Box display="flex">
         <button >
-        <Link to="/login"> Register </Link>
+        <Link to="/login"> get started </Link>
 </button>
          
           <Typography variant="h6" className={classes.title}>

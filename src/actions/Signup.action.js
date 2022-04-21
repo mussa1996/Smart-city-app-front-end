@@ -10,7 +10,7 @@ const signup = (credentials)=>async dispatch=>{
     dispatch({
     type:REQUEST_SIGNUP
 })
-    return axios.post('http://localhost:4500/api/user/signup', credentials)
+    return axios.post('http://localhost:4500/api/business/signup', credentials)
         .then(res => {
             localStorage.setItem('userToken', res.data.token);
             dispatch({
@@ -21,7 +21,7 @@ const signup = (credentials)=>async dispatch=>{
         if (err.response) {
             dispatch({
                 type: REQUEST_ERROR,
-                payload:'provide a different email'
+                payload:'provide valid credentials'
         })
        }
 })
