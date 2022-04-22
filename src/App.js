@@ -34,6 +34,10 @@ import USingle from './user/business/single/Single';
 import UAwardList from './user/awards/list/List';
 import UServiceList from './user/service/list/List';
 import UProductList from './user/product/list/List';
+import AwardUpdate from './user/awards/update/Update';
+import ProductUpdate from './user/product/update/Update';
+import ServiceUpdate from './user/service/update/Update';
+import BusinessUpdate from './user/business/update/Update';
 import New from './user/product/new/New';
 import AwardNew from './user/awards/new/New';
 import ServiceNew from './user/service/new/New';
@@ -69,15 +73,16 @@ const App = () => {
         <Route path='/user/awardlist' component={UAwardList} />
         <Route path='/user/servicelist' component={UServiceList} />
         <Route path='/user/productlist' component={UProductList} />
+        <Route path='/user/award/update' component={AwardUpdate} />
+        <Route path='/user/product/update' component={ProductUpdate} />
+        <Route path='/user/service/update' component={ServiceUpdate} />
+        <Route path='/user/business/update' component={BusinessUpdate} />
         <Route path='/award/new' component={AwardNew} />
         <Route path='/service/new' component={ServiceNew} />
         <Route path='/product/new' render={()=>{
           return <New inputs={productInputs}/>
         }} />
-        {/* <Route
-                path="/product/new"
-                element={<New inputs={""} title="Add New User" />}
-              /> */}
+       
         <ProtectedRoute component={Forgot} path="/forgot-password"/>
           <ProtectedRoute component={Resetpassword} path="/resetpassword"/>
         <Route path="/user-dashboard">

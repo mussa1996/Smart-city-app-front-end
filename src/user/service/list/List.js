@@ -75,6 +75,9 @@ const List=()=>{
                     >
                       Delete
                     </div>
+                    <Link to={`/user/service/update/${params.row._id}`}style={{ textDecoration: "none" }}>
+                      <div className="viewButton" onClick={() => handleView(params.row._id)} >Update</div>
+                    </Link>
                   </div>
                 );
               },
@@ -95,8 +98,14 @@ const List=()=>{
         };
         
         return (
-
-            <div style={{ height: 400, width: '100%' }}>
+  <>
+  <div className="datatableTitle">
+            Service Lists
+            <Link to="/product/new" className="link">
+              Add New
+            </Link>
+          </div>
+              <div style={{ height: 400, width: '100%' }}>
               <input type="text" placeholder='Search' className='search' onChange={handleSearch}></input>
               <DataGrid
                 rows={rowData}
@@ -106,7 +115,7 @@ const List=()=>{
                 rowsPerPageOptions={[5]}
                 checkboxSelection
               />
-            </div>
+            </div> </>
           );
 
 

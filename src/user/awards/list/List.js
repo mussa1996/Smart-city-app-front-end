@@ -71,6 +71,17 @@ const List=()=>{
               console.log(err);
           })
       };
+    //   const handleUpdate = (id) => {
+    //     axios.delete(`http://localhost:4500/api/award/update?id=${id}`)
+    //     .then(res=>{
+    //         console.log(res);
+    //         getAwardData();  
+    //     })
+
+    //     .catch(err=>{
+    //         console.log(err);
+    //     })
+    // };
         const actionColumn = [
             {
               field: "action",
@@ -88,6 +99,9 @@ const List=()=>{
                     >
                       Delete
                     </div>
+                    <Link to={`/user/award/update/${params.row._id}`}style={{ textDecoration: "none" }}>
+                      <div className="viewButton" onClick={() => handleView(params.row._id)} >Update</div>
+                    </Link>
                   </div>
                 );
               },
@@ -108,7 +122,14 @@ const List=()=>{
         };
         
         return (
-
+          <>
+          <div className="datatableTitle">
+            Award List
+            <Link to="/award/new" className="link">
+              Add New
+            </Link>
+          </div>
+ 
             <div style={{ height: 400, width: '100%' }}>
               <input type="text" placeholder='Search' className='search' onChange={handleSearch}></input>
               <DataGrid
@@ -119,7 +140,7 @@ const List=()=>{
                 rowsPerPageOptions={[5]}
                 checkboxSelection
               />
-            </div>
+            </div> </>
           );
 
 

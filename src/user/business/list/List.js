@@ -89,6 +89,9 @@ const List=()=>{
                     >
                       Delete
                     </div>
+                    <Link to={`/user/business/update/${params.row._id}`}style={{ textDecoration: "none" }}>
+                      <div className="viewButton" onClick={() => handleView(params.row._id)} >Update</div>
+                    </Link>
                   </div>
                 );
               },
