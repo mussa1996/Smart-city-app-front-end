@@ -10,7 +10,7 @@ function Address(isScriptLoaded,isScriptLoadSucceed) {
                     value={address}
                     onChange={setAddress}
                     onSelect={setAddress}
-                >
+                > 
                     {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                         <div>
                             <input

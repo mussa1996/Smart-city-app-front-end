@@ -73,7 +73,7 @@ const handleSubmit=async(e)=>{
   <input type="text" placeholder="Award Type" value={award_type} onChange={(e)=>setAwardType(e.target.value)} className="form-control"/><br/>
   <input type="text" placeholder="Year"  value={year} onChange={(e)=>setYear(e.target.value)} className="form-control"  /><br/>
   <input type="file" placeholder="image"  onChange={(e)=>setImages(e.target.files[0])} className="form-control"/>
-  <button  onClick={handleSubmit} className="btn">Update Award</button>
+  <button  onClick={handleSubmit} className="btnb">Update Award</button>
 
                
                </form>

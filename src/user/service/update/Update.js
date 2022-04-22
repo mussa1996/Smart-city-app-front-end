@@ -62,7 +62,7 @@ const handleSubmit=async(e)=>{
 
             <input type="text" placeholder="Service Name" value={name} onChange={(e)=>setName(e.target.value)} className="form-control"/><br/>
  
-  <button  onClick={handleSubmit} className="btn">Update Service</button>
+  <button  onClick={handleSubmit} className="btnb">Update Service</button>
 
                
                </form>

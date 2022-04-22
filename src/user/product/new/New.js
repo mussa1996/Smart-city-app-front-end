@@ -43,7 +43,7 @@ const handleSubmit=async(e)=>{
   <input type="text" placeholder="Price level"  onChange={(e)=>setPriceLevel(e.target.value)} className="form-control" required /><br/>
   <input type="text" placeholder="Description"  onChange={(e)=>setDescription(e.target.value)} className="form-control" required/><br/>
   <input type="file" placeholder="image" onChange={(e)=>setPhoto(e.target.files[0])} className="form-control" required />
-  <button  onClick={handleSubmit} className="btn">Add Product</button>
+  <button  onClick={handleSubmit} className="btnb">Add Product</button>
 
                
                </form>

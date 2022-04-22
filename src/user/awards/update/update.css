@@ -22,7 +22,7 @@
     font-size: larger;
   }
   
-  .btn {
+  .btnb {
     background: #0563b4 !important;
     border: none;
     border-radius: 5px;
@@ -38,7 +38,7 @@
 
    
   }
-  .btn:hover {
+  .btnb:hover {
         background: rgb(53, 42, 42) !important;
         border: none;
         border-radius: 5px;

@@ -83,7 +83,7 @@ const handleSubmit=async(e)=>{
     <input type="text" placeholder="Phone" value={phone} onChange={(e)=>setPhone(e.target.value)} className="form-control"/><br/>
   <input type="file" placeholder="photo"  onChange={(e)=>setPhoto(e.target.files[0])} className="form-control"/><br/>
   <input type="text" placeholder="Website" value={website} onChange={(e)=>setWebsite(e.target.value)} className="form-control"/><br/>
-  <button  onClick={handleSubmit} className="btn">Update Business</button>
+  <button  onClick={handleSubmit} className="btnb">Update Business</button>
 
                
                </form>
