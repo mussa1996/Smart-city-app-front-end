@@ -1,4 +1,4 @@
-import { REQUEST_SIGNUP, REQUEST_SUCCESS, REQUEST_ERROR } from '../actions/Signup.action';
+import { REQUEST_SIGNUP, REQUEST_SUCCESS, REQUEST_ERROR } from '../../actions/Signup.action';
 
 const initialState = {
     requesting: false,

@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 
-const columns: GridColDef[] = [
+const columns= [
     { field: '_id', headerName: 'ID', width: 70, hide: true },
     { field: 'business_name', headerName: 'Business Name', width: 130 },
     { field: 'owner_name', headerName: 'Owner Name', width: 130 },
@@ -31,6 +31,7 @@ const columns: GridColDef[] = [
 
 const List=()=>{
     const [business,setBusiness]=useState([]);
+    const [user,setUser]=useState([]);
     const [search,setSearch]=useState('');
     const getBusinessData=()=>{
         axios.get('http://localhost:4500/api/admin/getAll')
@@ -61,10 +62,13 @@ const List=()=>{
             })
         };
         const handleView = (id) => {
-          axios.delete(`http://localhost:4500/api/admin/getOne?id=${id}`)
+          axios.get(`http://localhost:4500/api/admin/getOne?id=${id}`)
           .then(res=>{
-              console.log(res);
-              getBusinessData();  
+              
+              setUser(res.data.business);  
+              // localStorage.setItem('businessToken', res.data.business);
+              // console.log("test in user business",res.data.business);
+              
           })
 
           .catch(err=>{
@@ -78,9 +82,10 @@ const List=()=>{
               headerName: "Action",
               width: 200,
               renderCell: (params) => {
+                // console.log("testing of param",params.row._id)
                 return (
                   <div className="cellAction">
-                    <Link to="/single" style={{ textDecoration: "none" }}>
+                    <Link to={`/user/single/${params.row._id}`} style={{ textDecoration: "none" }}>
                       <div className="viewButton" onClick={() => handleView(params.row._id)} >View</div>
                     </Link>
                     <div
@@ -114,14 +119,14 @@ const List=()=>{
         
         return (
 
-            <div style={{ height: 400, width: '100%' }}>
+            <div style={{ height: 500, width: '100%' }}>
               <input type="text" placeholder='Search' className='search' onChange={handleSearch}></input>
               <DataGrid
                 rows={rowData}
                 columns={columns.concat(actionColumn)}
-                pageSize={5}
+                pageSize={7}
                 getRowId={(row) => row._id}
-                rowsPerPageOptions={[5]}
+                rowsPerPageOptions={[7]}
                 checkboxSelection
               />
             </div>

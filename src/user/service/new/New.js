@@ -8,13 +8,15 @@ function AddService(){
     const history = useHistory();
     const [name,setName]=useState('');
 const handleSubmit=async(e)=>{
+    const token = localStorage.getItem('userToken')
+    console.log("service",token)
     e.preventDefault();
     const formData=new FormData();
     formData.append('name',name);
-   axios.post('http://localhost:4500/api/service/create',formData)
+   axios.post('http://localhost:4500/api/service/create',formData,{ headers: {"Authorization" : `Bearer ${token}`} })
     .then(res=>{
         cogoToast.success('Service Added Successfully',{position:'top-center'});
-        history.push('/servicelist');
+        history.push('/user/service/list');
     })
     .catch(err=>{
         cogoToast.error('To add award failed, try again',{position:'top-center'});

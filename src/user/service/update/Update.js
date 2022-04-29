@@ -45,7 +45,7 @@ const handleSubmit=async(e)=>{
    axios.put(`http://localhost:4500/api/service/update?id=${id}`,formData)
     .then(res=>{
         cogoToast.success('Service Updated Successfully',{position:'top-center'});
-        history.push('/user/servicelist');
+        history.push('/user/service/list');
     })
     .catch(err=>{
         cogoToast.error('To update service failed, try again',{position:'top-center'});

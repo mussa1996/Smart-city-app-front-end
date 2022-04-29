@@ -1,4 +1,4 @@
-import { LOGIN_ERROR, LOGIN_REQUEST, LOGIN_SUCCESS,LOGOUT } from '../actions/LoginAction'
+import { LOGIN_ERROR, LOGIN_REQUEST, LOGIN_SUCCESS,LOGOUT } from '../../actions/LoginAction'
 
 const initialState = {
     success: false,

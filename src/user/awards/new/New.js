@@ -11,16 +11,17 @@ function AddAward(){
     const [year,setYear]=useState('');
     const [images,setImages]=useState('');
 const handleSubmit=async(e)=>{
+    const token = localStorage.getItem('userToken')
     e.preventDefault();
     const formData=new FormData();
     formData.append('display_name',display_name);
     formData.append('award_type',award_type);
     formData.append('year',year);
     formData.append('images',images);
-   axios.post('http://localhost:4500/api/award/create',formData)
+   axios.post('http://localhost:4500/api/award/create',formData,{ headers: {"Authorization" : `Bearer ${token}`} })
     .then(res=>{
         cogoToast.success('Award Added Successfully',{position:'top-center'});
-        history.push('/awardlist');
+        history.push('/user/award/list');
     })
     .catch(err=>{
         cogoToast.error('To add award failed, try again',{position:'top-center'});

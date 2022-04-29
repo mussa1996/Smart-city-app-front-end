@@ -15,10 +15,10 @@ export default class Menu extends Component {
       {/* Sidebar user panel (optional) */}
       <div className="user-panel mt-3 pb-3 mb-3 d-flex">
         <div className="image">
-          <img src="dist/img/user2-160x160.jpg" className="img-circle elevation-2" alt="User Image" />
+          <img src="../../../images/image.png" className="img-circle elevation-2" alt="User Image" />
         </div>
         <div className="info">
-          <a href="#" className="d-block">Alexander Pierce</a>
+          <a href="#" className="d-block">Mussa</a>
         </div>
       </div>
       {/* Sidebar Menu */}
@@ -56,20 +56,26 @@ export default class Menu extends Component {
               </p>
             </a>
             <ul className="nav nav-treeview">
+            <li className="nav-item">
+                <a href="/list" className="nav-link">
+                  <i className="far fa-circle nav-icon" />
+                  <p>Business</p>
+                </a>
+              </li>
               <li className="nav-item">
-                <a href="/admin-dashboard/business/List.js" className="nav-link">
+                <a href="/product/list" className="nav-link">
                   <i className="far fa-circle nav-icon" />
                   <p>Product</p>
                 </a>
               </li>
               <li className="nav-item">
-                <a href="pages/tables/simple.html" className="nav-link">
+                <a href="/award/list" className="nav-link">
                   <i className="far fa-circle nav-icon" />
                   <p>Awards</p>
                 </a>
               </li>
               <li className="nav-item">
-                <a href="pages/tables/jsgrid.html" className="nav-link">
+                <a href="/service/list" className="nav-link">
                   <i className="far fa-circle nav-icon" />
                   <p>Internal_service</p>
                 </a>
@@ -78,6 +84,7 @@ export default class Menu extends Component {
           </li>
          
         </ul>
+       
       </nav>
       {/* /.sidebar-menu */}
     </div>

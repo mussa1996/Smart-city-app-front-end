@@ -31,6 +31,7 @@ function Login(props) {
         props.signIn(state)
         if (props.login.error) {
             cogoToast.error(
+                "Failed to login",
                 <div>
                   <b>oops!</b>
                     <div>{props.login.message}</div>
@@ -40,7 +41,7 @@ function Login(props) {
     }
     if (props.login.success) {
         cogoToast.success("Successfully Login");
-        props.history.push('/dashboard')
+        props.history.push('/user-dashboard')
     }
     
     const togglePassword = (e) => {
@@ -60,7 +61,7 @@ function Login(props) {
             <div className="col-12 col-md-7 col-lg-6 auth-main-col text-center">
                 <div className="d-flex flex-column align-content-end">
                     <div className="auth-body mx-auto">
-                        <p>Login to your account</p>
+                        <h1>Login to your account</h1>
                         <div className="auth-form-container text-start">
                             <form className="auth-form" method="POST" onSubmit={handleSubmit}  autoComplete={'off'}>
                                 <div className="email mb-3">

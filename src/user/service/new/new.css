@@ -48,9 +48,9 @@
         cursor: pointer;
         text-align: center;
     }
-  p {
+  /* p {
     color: red;
-  }
+  } */
   h1 {
     color: #0563b4;
     font-size: larger;

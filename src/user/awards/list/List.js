@@ -7,15 +7,30 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 
-const columns: GridColDef[] = [
+
+// let business=null;
+// ;
+// console.log("business data",business)
+// departments.filter(item=>item.departmentId==formData[i].departmentId).map(item=>item.departmentName)
+const List=()=>{
+  
+ const  [business,setBusiness]=useState('')
+  
+  const columns= [
     { field: '_id', headerName: 'ID', width: 70, hide: true },
     { field: 'award_type', headerName: 'Award Type', width: 130 },
     { field: 'display_name', headerName: 'Award Name', width: 130 },
     { field: 'year', headerName: 'Year', width: 130 },
-    { field: 'business_id', headerName: 'Business Name', width: 130 },
+    { field: 'business_id', headerName: 'Business Name', width: 130,
+   return: function(item) { 
+     console.log("business data",item)
+    return item.business_id;
+
+  } 
+    },
     { field: 'photo', headerName: 'Photo', width: 200 ,
     renderCell: (params) => {
-      console.log("parama",params)
+      // console.log("parama",params)
         return (
           <div className="cellWithImg">
             <img className="cellImg" src={params.row.images} alt="avatar" />
@@ -27,10 +42,22 @@ const columns: GridColDef[] = [
     
 
 ];
-
-const List=()=>{
     const [award,setAward]=useState([]);
     const [search,setSearch]=useState('');
+    
+    const businessData=()=>{
+      axios.get('http://localhost:4500/api/admin/getAll')
+      .then(res=>{
+        setBusiness(res.data.data);
+        // console.log("business data",res.data.data);
+      })
+      .catch(err=>{
+          console.log(err);
+      })
+  }
+    useEffect(()=>{
+      businessData();
+    },[])
     const getAwardData=()=>{
         axios.get('http://localhost:4500/api/award/getAll')
         .then(res=>{
@@ -45,7 +72,7 @@ const List=()=>{
       getAwardData();
     }
     ,[])
-    const rowData=award;
+    var rowData=award;
    
         const [data, setData] = useState(rowData);
         
@@ -71,17 +98,7 @@ const List=()=>{
               console.log(err);
           })
       };
-    //   const handleUpdate = (id) => {
-    //     axios.delete(`http://localhost:4500/api/award/update?id=${id}`)
-    //     .then(res=>{
-    //         console.log(res);
-    //         getAwardData();  
-    //     })
-
-    //     .catch(err=>{
-    //         console.log(err);
-    //     })
-    // };
+   
         const actionColumn = [
             {
               field: "action",
@@ -108,37 +125,49 @@ const List=()=>{
             },
           ];
          
-        const handleSearch = (e) => {
-            setSearch(e.target.value);
-            const searchData = rowData.filter((item) => {
-              if(search==""){
-                return item;
-              }
-              else if(item.display_name.toLowerCase().includes(e.target.value.toLowerCase()))
-                return item ;
-            });
-            setData(searchData);
-            
-        };
         
+      
+     
+        const handleSearchChange = async (e) => {
+          setSearch(e.target.value);
+          const searchData = await rowData.filter((item) => {
+            if(search==""){
+              return item;
+            }
+            else if(item.display_name.toLowerCase().includes(search.toLowerCase()))
+              return item ;
+          });
+          setData(searchData);
+          rowData=data;
+          console.log("search data",rowData);
+        };
+       
         return (
           <>
           <div className="datatableTitle">
-            Award List
+          <div className='tableTitle'>
+          Award Lists
+            </div>
+           
             <Link to="/award/new" className="link">
               Add New
             </Link>
           </div>
  
-            <div style={{ height: 400, width: '100%' }}>
-              <input type="text" placeholder='Search' className='search' onChange={handleSearch}></input>
+            <div style={{ height: 500, width: '100%' }}>
+              <input type="text" placeholder='Search'  className='search' onChange={handleSearchChange}/>
+             
               <DataGrid
+             
                 rows={rowData}
+    
                 columns={columns.concat(actionColumn)}
-                pageSize={5}
+                pageSize={7}
                 getRowId={(row) => row._id}
-                rowsPerPageOptions={[5]}
+                rowsPerPageOptions={[7]}
                 checkboxSelection
+               
+
               />
             </div> </>
           );

@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
-
+import {Nav,Navbar,NavDropdown,Form,FormControl,Button} from 'react-bootstrap';
+import logout from '../../actions/LogoutActions';
+import { useHistory } from "react-router-dom";
 export default class Menu extends Component {
+  
+
     render() {
         return (
           <div>
@@ -15,10 +19,10 @@ export default class Menu extends Component {
       {/* Sidebar user panel (optional) */}
       <div className="user-panel mt-3 pb-3 mb-3 d-flex">
         <div className="image">
-          <img src="dist/img/user2-160x160.jpg" className="img-circle elevation-2" alt="User Image" />
+          <img src="../../images/image.png" className="img-circle elevation-2" alt="User Image" />
         </div>
         <div className="info">
-          <a href="#" className="d-block">Alexander Pierce</a>
+          <a href="#" className="d-block">Mussa</a>
         </div>
       </div>
       {/* Sidebar Menu */}
@@ -56,20 +60,26 @@ export default class Menu extends Component {
               </p>
             </a>
             <ul className="nav nav-treeview">
+            <li className="nav-item">
+                <a href="/user/list" className="nav-link">
+                  <i className="far fa-circle nav-icon" />
+                  <p>Business</p>
+                </a>
+              </li>
               <li className="nav-item">
-                <a href="/admin-dashboard/business/List.js" className="nav-link">
+                <a href="/user/product/list" className="nav-link">
                   <i className="far fa-circle nav-icon" />
                   <p>Product</p>
                 </a>
               </li>
               <li className="nav-item">
-                <a href="pages/tables/simple.html" className="nav-link">
+                <a href="/user/award/list" className="nav-link">
                   <i className="far fa-circle nav-icon" />
                   <p>Awards</p>
                 </a>
               </li>
               <li className="nav-item">
-                <a href="pages/tables/jsgrid.html" className="nav-link">
+                <a href="/user/service/list" className="nav-link">
                   <i className="far fa-circle nav-icon" />
                   <p>Internal_service</p>
                 </a>
@@ -78,7 +88,17 @@ export default class Menu extends Component {
           </li>
          
         </ul>
+        <div>
+        
+         
+
+        </div>
       </nav>
+      <Nav>
+        <NavDropdown title="User" >
+       <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
+          </NavDropdown>
+        </Nav>
       {/* /.sidebar-menu */}
     </div>
     {/* /.sidebar */}

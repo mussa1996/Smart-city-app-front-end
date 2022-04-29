@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 
-const columns: GridColDef[] = [
+const columns= [
     { field: '_id', headerName: 'ID', width: 70, hide: true },
     { field: 'award_type', headerName: 'Award Type', width: 130 },
     { field: 'display_name', headerName: 'Award Name', width: 130 },
@@ -109,14 +109,14 @@ const List=()=>{
         
         return (
 
-            <div style={{ height: 400, width: '100%' }}>
+            <div style={{ height: 500, width: '100%' }}>
               <input type="text" placeholder='Search' className='search' onChange={handleSearch}></input>
               <DataGrid
                 rows={rowData}
                 columns={columns.concat(actionColumn)}
-                pageSize={5}
+                pageSize={7}
                 getRowId={(row) => row._id}
-                rowsPerPageOptions={[5]}
+                rowsPerPageOptions={[7]}
                 checkboxSelection
               />
             </div>

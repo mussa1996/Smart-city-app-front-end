@@ -57,7 +57,7 @@ const handleSubmit=async(e)=>{
    axios.put(`http://localhost:4500/api/product/update?id=${id}`,formData)
     .then(res=>{
         cogoToast.success('Product Updated Successfully',{position:'top-center'});
-        history.push('/user/productlist');
+        history.push('/user/product/list');
     })
     .catch(err=>{
         cogoToast.error('To update Product failed, try again',{position:'top-center'});

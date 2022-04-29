@@ -54,7 +54,7 @@ const handleSubmit=async(e)=>{
    axios.put(`http://localhost:4500/api/award/update?id=${id}`,formData)
     .then(res=>{
         cogoToast.success('Award Updated Successfully',{position:'top-center'});
-        history.push('/user/awardlist');
+        history.push('/user/award/list');
     })
     .catch(err=>{
         cogoToast.error('To update award failed, try again',{position:'top-center'});
