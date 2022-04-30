@@ -40,6 +40,9 @@ console.log("user",service);
         {/* <Navbar /> */}
         <div className="top">
           <div className="left">
+          <Link to="/service/list">
+            <div className="editButton" >Back</div>
+            </Link>
             <h1 className="title">Information</h1>
             <div className="item">
               <img
@@ -48,7 +51,7 @@ console.log("user",service);
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">Service Details</h1>
+                <h1 className="title">Service Details</h1>
                 <div className="detailItem">
                   <span className="itemKey">Service Name:</span>
                   <span className="itemValue">{rowData.name}</span>

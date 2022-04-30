@@ -39,7 +39,9 @@ console.log("user",user);
         {/* <Navbar /> */}
         <div className="top">
           <div className="left">
-            <div className="editButton">Edit</div>
+            <Link to="/user/list">
+            <div className="editButton" >Back</div>
+            </Link>
             <h1 className="title">Information</h1>
             <div className="item">
               <img
@@ -48,10 +50,10 @@ console.log("user",user);
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">Business Details</h1>
+                <h1 className="title">Business Details</h1>
                 <div className="detailItem">
                   <span className="itemKey">Business Name:</span>
-                  <span className="itemValue">{rowData.business_name}</span>
+                  <span className="itemValue">{rowData.name}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Owner Name:</span>
@@ -83,7 +85,7 @@ console.log("user",user);
           </div> */}
         </div>
         <div className="bottom">
-        <h1 className="title">List of all business</h1>
+        <h1 className="title">List of business</h1>
           <List/>
         </div>
       </div>

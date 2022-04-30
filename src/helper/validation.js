@@ -3,21 +3,21 @@
 
 const validation = (values) => {
     let errors={}
-            if (!values.business_name) {
+            if (!values.name) {
           
-          errors.business_name= "*Please enter your business name.";
+          errors.name= "*Please enter your business name.";
         }
-        else if (!values.business_name.length < 3) {
-          errors.business_name= "*Your name is too short.";
+        else if (!values.name.length < 3) {
+          errors.name= "*Your name is too short.";
         }
         else{
-            errors.business_name= "";
+            errors.name= "";
         }
       
-        if (typeof values.business_name !== "undefined") {
-          if (!values.business_name.match(/^[a-zA-Z ]*$/)) {
+        if (typeof values.name !== "undefined") {
+          if (!values.name.match(/^[a-zA-Z ]*$/)) {
             
-            errors.business_name = "Please enter alphabet characters only.";
+            errors.name = "Please enter alphabet characters only.";
           }
         }
         if (!values.owner_name) {

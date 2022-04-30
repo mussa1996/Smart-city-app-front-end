@@ -40,6 +40,9 @@ console.log("user",award);
         {/* <Navbar /> */}
         <div className="top">
           <div className="left">
+          <Link to="/user/award/list">
+            <div className="editButton" >Back</div>
+            </Link>
             <h1 className="title">Information</h1>
             <div className="item">
               <img
@@ -48,7 +51,7 @@ console.log("user",award);
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">Award Details</h1>
+                <h1 className="title">Award Details</h1>
                 <div className="detailItem">
                   <span className="itemKey">Award Type:</span>
                   <span className="itemValue">{rowData.award_type}</span>

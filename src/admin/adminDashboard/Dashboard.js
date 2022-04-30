@@ -100,6 +100,7 @@ const Dashboard = ()=>{
     //        <Main />
     //    </div>
     <AdmDashboardWrapper className="wrapper">
+        
         <Menu />
     </AdmDashboardWrapper>
    )

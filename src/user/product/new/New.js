@@ -1,7 +1,7 @@
 import './new.css'
 import {useState,useEffect} from 'react';
 import cogoToast from 'cogo-toast';
-import { useHistory } from 'react-router-dom';
+import { useHistory,Link } from 'react-router-dom';
 import axios from 'axios';
 
 function AddProduct(){
@@ -50,6 +50,9 @@ const handleSubmit=async(e,values, props)=>{
   <input type="text" placeholder="Description"  onChange={(e)=>setDescription(e.target.value)} className="form-control" required/><br/>
   <input type="file" placeholder="image" onChange={(e)=>setPhoto(e.target.files[0])} className="form-control" required />
   <button  onClick={handleSubmit} className="btnb">Add Product</button>
+  <Link to="/user/product/list">
+  <button  className="btnbb">Back</button>
+            </Link>
 
                
                </form>

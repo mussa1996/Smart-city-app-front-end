@@ -8,6 +8,7 @@ import Map from '../Map/Map';
 
 
 const Index = () => {
+  
   const [type, setType] = useState('restaurants');
   const [rating, setRating] = useState('');
 
@@ -43,14 +44,16 @@ const Index = () => {
 
       getPlacesData(type, bounds.sw, bounds.ne)
         .then((data) => {
-          setPlaces(data.filter((place) => place.name && place.num_reviews > 0));
+          setPlaces(data.filter((place) => place.name > 0));
           setFilteredPlaces([]);
           setRating('');
           setIsLoading(false);
+          
         });
     }
   }, [bounds, type]);
-
+  
+console.log("places", places);
   const onLoad = (autoC) => setAutocomplete(autoC);
 
   const onPlaceChanged = () => {

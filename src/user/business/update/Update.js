@@ -1,12 +1,12 @@
 import './update.css'
 import {useState,useEffect} from 'react';
 import cogoToast from 'cogo-toast';
-import { useHistory } from 'react-router-dom';
+import { useHistory,Link } from 'react-router-dom';
 import axios from 'axios';
 
 function UpdateBusiness(){
     const history = useHistory();
-    const [business_name,setBusinessName]=useState('');
+    const [name,setName]=useState('');
     const [owner_name,setOwnerName]=useState('');
     const [address,setAddress]=useState('');
     const[phone,setPhone]=useState('');
@@ -21,17 +21,17 @@ function UpdateBusiness(){
         const queryParams = new URLSearchParams(window.location.pathname);
         const params = window.location.pathname.split("/");
          id = params[params.length - 1];
-        axios.get(`http://localhost:4500/api/business/getOne?id=${id}`)
+        axios.get(`http://localhost:4500/api/admin/getOne?id=${id}`)
         .then(res=>{
             
           setBusiness(res.data.business); 
-          setBusinessName(res.data.business.business_name);
+          setName(res.data.business.name);
             setOwnerName(res.data.business.owner_name);
             setAddress(res.data.business.address);
-            setPhone(res.data.businesss.phone);
-            setWebsite(res.data.businesss.website);
+            setPhone(res.data.business.phone);
+            setWebsite(res.data.business.website);
             setPhoto(res.data.business.photo);
-            console.log("test",res.data.business);
+            
 
             
         })
@@ -49,7 +49,7 @@ function UpdateBusiness(){
 const handleSubmit=async(e)=>{
     e.preventDefault();
     const formData=new FormData();
-    formData.append('business_name',business_name);
+    formData.append('name',name);
     formData.append('owner_name',owner_name);
     formData.append('address',address);
     
@@ -57,7 +57,7 @@ const handleSubmit=async(e)=>{
     formData.append('phone',phone);
     formData.append('website',website);
     console.log("formData",formData);
-    console.warn("data for update",{business_name,owner_name,address,photo,phone,website});
+    console.warn("data for update",{name,owner_name,address,photo,phone,website});
    axios.put(`http://localhost:4500/api/business/update?id=${id}`,formData)
     .then(res=>{
         cogoToast.success('Business Updated Successfully',{position:'top-center'});
@@ -70,13 +70,12 @@ const handleSubmit=async(e)=>{
     })
 }
     
-   
 
     return (
         <div className="container">
             <form>
 
-            <input type="text" placeholder="Business Name" value={business_name} onChange={(e)=>setBusinessName(e.target.value)} className="form-control"/><br/>
+            <input type="text" placeholder="Business Name" value={name} onChange={(e)=>setName(e.target.value)} className="form-control"/><br/>
   <input type="text" placeholder="Owner Name" value={owner_name} onChange={(e)=>setOwnerName(e.target.value)} className="form-control"/><br/>
  
   <input type="text" placeholder="Address"  value={address} onChange={(e)=>setAddress(e.target.value)} className="form-control"  /><br/>
@@ -84,7 +83,9 @@ const handleSubmit=async(e)=>{
   <input type="file" placeholder="photo"  onChange={(e)=>setPhoto(e.target.files[0])} className="form-control"/><br/>
   <input type="text" placeholder="Website" value={website} onChange={(e)=>setWebsite(e.target.value)} className="form-control"/><br/>
   <button  onClick={handleSubmit} className="btnb">Update Business</button>
-
+  <Link to="/user/list">
+  <button  className="btnbb">Back</button>
+            </Link>
                
                </form>
         </div>

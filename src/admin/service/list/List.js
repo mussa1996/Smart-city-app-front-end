@@ -10,7 +10,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 const columns= [
     { field: '_id', headerName: 'ID', width: 70, hide: true },
     { field: 'name', headerName: 'Name', width: 130 },
-    { field: 'busines_id', headerName: 'Business Name', width: 130 },
+    { field: 'business_id', headerName: 'Business Name', width: 130 },
     
 
 ];
@@ -97,7 +97,7 @@ const List=()=>{
         return (
 
             <div style={{ height: 500, width: '100%' }}>
-              <input type="text" placeholder='Search' className='search' onChange={handleSearch}></input>
+              {/* <input type="text" placeholder='Search' className='search' onChange={handleSearch}></input> */}
               <DataGrid
                 rows={rowData}
                 columns={columns.concat(actionColumn)}

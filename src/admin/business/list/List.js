@@ -10,7 +10,7 @@ import Menu from '../../adminDashboard/Menu';
 
 const columns= [
     { field: '_id', headerName: 'ID', width: 70, hide: true },
-    { field: 'business_name', headerName: 'Business Name', width: 130 },
+    { field: 'name', headerName: 'Business Name', width: 130 },
     { field: 'owner_name', headerName: 'Owner Name', width: 130 },
     { field: 'category', headerName: 'Category', width: 130 },
     { field: 'address', headerName: 'Address', width: 130 },
@@ -21,7 +21,7 @@ const columns= [
         return (
           <div className="cellWithImg">
             <img className="cellImg" src={params.row.photo} alt="avatar" />
-            {params.row.business_name}
+            {params.row.name}
           </div>
         );
       },
@@ -121,9 +121,9 @@ const List=()=>{
               if(search==""){
                 return item;
               }
-              else if(item.business_name.toLowerCase().includes(e.target.value.toLowerCase()))
+              else if(item.name.toLowerCase().includes(e.target.value.toLowerCase()))
                 return item ;
-                console.log(item.business_name)
+                console.log(item.name)
             });
             setData(searchData);
             
@@ -131,7 +131,7 @@ const List=()=>{
         
         return (
           <><Menu /><div style={{ height: 500, width: '100%' }}>
-            <input type="text" placeholder='Search' className='search' onChange={handleSearch}></input>
+            {/* <input type="text" placeholder='Search' className='search' onChange={handleSearch}></input> */}
             <DataGrid
               rows={rowData}
               columns={columns.concat(actionColumn)}

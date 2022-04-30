@@ -6,7 +6,7 @@ import { DataGrid,GridColDef } from '@mui/x-data-grid';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
-
+import jwt_decode from "jwt-decode";
 
 // let business=null;
 // ;
@@ -59,7 +59,10 @@ const List=()=>{
       businessData();
     },[])
     const getAwardData=()=>{
-        axios.get('http://localhost:4500/api/award/getAll')
+      const user= localStorage.getItem('userToken');
+      const decoded = jwt_decode(user);
+      const userId=decoded._id;
+        axios.get(`http://localhost:4500/api/award/getAwardById?business_id=${userId}`)
         .then(res=>{
           setAward(res.data.award);
           console.log("award data",res.data.award);
@@ -155,8 +158,8 @@ const List=()=>{
           </div>
  
             <div style={{ height: 500, width: '100%' }}>
-              <input type="text" placeholder='Search'  className='search' onChange={handleSearchChange}/>
-             
+              {/* <input type="text" placeholder='Search'  className='search' onChange={handleSearchChange}/>
+              */}
               <DataGrid
              
                 rows={rowData}

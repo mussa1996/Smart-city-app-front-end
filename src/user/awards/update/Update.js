@@ -1,7 +1,7 @@
 import './update.css'
 import {useState,useEffect} from 'react';
 import cogoToast from 'cogo-toast';
-import { useHistory } from 'react-router-dom';
+import { useHistory ,Link} from 'react-router-dom';
 import axios from 'axios';
 
 function AddAward(){
@@ -74,7 +74,9 @@ const handleSubmit=async(e)=>{
   <input type="text" placeholder="Year"  value={year} onChange={(e)=>setYear(e.target.value)} className="form-control"  /><br/>
   <input type="file" placeholder="image"  onChange={(e)=>setImages(e.target.files[0])} className="form-control"/>
   <button  onClick={handleSubmit} className="btnb">Update Award</button>
-
+  <Link to="/user/award/list">
+  <button  className="btnbb">Back</button>
+            </Link>
                
                </form>
         </div>

@@ -6,7 +6,7 @@ import { DataGrid,GridColDef } from '@mui/x-data-grid';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
-
+import jwt_decode from "jwt-decode";
 const columns= [
     { field: '_id', headerName: 'ID', width: 70, hide: true },
     { field: 'name', headerName: 'Product Name', width: 130 },
@@ -35,7 +35,10 @@ const List=()=>{
     const [product,setProduct]=useState([]);
     const [search,setSearch]=useState('');
     const getProductData=()=>{
-        axios.get('http://localhost:4500/api/product/getAll')
+      const user= localStorage.getItem('userToken');
+      const decoded = jwt_decode(user);
+      const userId=decoded._id;
+        axios.get(`http://localhost:4500/api/product/getProductById?business_id=${userId}`)
         .then(res=>{
           setProduct(res.data.product);
           console.log("product data",res.data.product);
@@ -124,7 +127,7 @@ const List=()=>{
             </Link>
           </div>
           <div style={{ height: 500, width: '100%' }}>
-              <input type="text" placeholder='Search' className='search' onChange={handleSearch}></input>
+              {/* <input type="text" placeholder='Search' className='search' onChange={handleSearch}></input> */}
               <DataGrid
                 rows={rowData}
                 columns={columns.concat(actionColumn)}

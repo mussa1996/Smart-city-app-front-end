@@ -2,10 +2,13 @@ import React, { Component } from 'react'
 // import Counts from '../../../helper/userCount/business'
 import {useState,useEffect} from 'react'
 import axios from 'axios';
+import jwt_decode from "jwt-decode";
 let counts;
 let product;
 let award;
 let service;
+let user;
+let decoded;
 export default class Dashboard extends Component {
   
   constructor(props) {
@@ -18,27 +21,17 @@ export default class Dashboard extends Component {
   }
   
 
-  // async componentDidMount() {
-  //   try {
-  //     const res = await fetch('http://localhost:4500/api/award/count');
-  //     const data = await res.json();
-  //     console.log(data.data);
-  //     award=data.data;
-  //     console.log("award",award)
-  //     this.setState({
-  //       message: data.data
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
+ 
   async componentDidMount() {
     try {
+      user = localStorage.getItem('userToken');
+    decoded = jwt_decode(user);
+    console.log(decoded._id);
       Promise.all([
-        fetch('http://localhost:4500/api/business/count'),
-        fetch('http://localhost:4500/api/product/count'),
-        fetch('http://localhost:4500/api/award/count'),
-        fetch('http://localhost:4500/api/service/count')
+        fetch(`http://localhost:4500/api/business/countById?id=${decoded._id}`),
+        fetch(`http://localhost:4500/api/product/countById?business_id=${decoded._id}`),
+        fetch(`http://localhost:4500/api/award/countById?business_id=${decoded._id}`),
+        fetch(`http://localhost:4500/api/service/countById?business_id=${decoded._id}`)
       ]).then(async ([res1, res2, res3, res4]) => {
         const data1 = await res1.json();
         const data2 = await res2.json();

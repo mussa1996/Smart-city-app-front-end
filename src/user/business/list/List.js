@@ -1,15 +1,17 @@
 import './list.css'
 import React, {useEffect,useState} from 'react';
+import {PropTypes} from 'prop-types';
 import {Link } from 'react-router-dom';
 import axios from 'axios';
 import { DataGrid,GridColDef } from '@mui/x-data-grid';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
+import jwt_decode from "jwt-decode";
 
 const columns= [
     { field: '_id', headerName: 'ID', width: 70, hide: true },
-    { field: 'business_name', headerName: 'Business Name', width: 130 },
+    { field: 'name', headerName: 'Business Name', width: 130 },
     { field: 'owner_name', headerName: 'Owner Name', width: 130 },
     { field: 'category', headerName: 'Category', width: 130 },
     { field: 'address', headerName: 'Address', width: 130 },
@@ -20,7 +22,7 @@ const columns= [
         return (
           <div className="cellWithImg">
             <img className="cellImg" src={params.row.photo} alt="avatar" />
-            {params.row.business_name}
+            {params.row.name}
           </div>
         );
       },
@@ -34,20 +36,31 @@ const List=()=>{
     const [user,setUser]=useState([]);
     const [search,setSearch]=useState('');
     const getBusinessData=()=>{
-        axios.get('http://localhost:4500/api/admin/getAll')
+     const user= localStorage.getItem('userToken');
+      const decoded = jwt_decode(user);
+      const userId=decoded._id;
+      
+        axios.get(`http://localhost:4500/api/admin/getOne?id=${userId}`)
         .then(res=>{
-            setBusiness(res.data.data);
+            setBusiness([res.data.business]);
+            console.log("business data is:",res.data.business);
         })
         .catch(err=>{
             console.log(err);
         })
     }
+    
+    let rowData=business
     useEffect(()=>{
         getBusinessData();
+         
     }
     ,[])
-    const rowData=business;
-   
+    console.log("business is:",business);
+    
+    // rowData.push(business);
+    
+    // console.log("rowData is:",rowData);
         const [data, setData] = useState(rowData);
         
         const handleDelete = (id) => {
@@ -75,7 +88,6 @@ const List=()=>{
               console.log(err);
           })
       };
-      console.log("view",handleView.data)
         const actionColumn = [
             {
               field: "action",
@@ -109,18 +121,22 @@ const List=()=>{
               if(search==""){
                 return item;
               }
-              else if(item.business_name.toLowerCase().includes(e.target.value.toLowerCase()))
+              else if(item.name.toLowerCase().includes(e.target.value.toLowerCase()))
                 return item ;
-                console.log(item.business_name)
+                console.log(item.name)
             });
             setData(searchData);
             
         };
-        
+        // convert object into array of objects for grid to render correctly  with keys and values
+        // const dataArray = 
+        // console.log("dataArray",dataArray);
+       
+        console.log("rowdata",rowData);
         return (
 
             <div style={{ height: 500, width: '100%' }}>
-              <input type="text" placeholder='Search' className='search' onChange={handleSearch}></input>
+              {/* <input type="text" placeholder='Search' className='search' onChange={handleSearch}></input> */}
               <DataGrid
                 rows={rowData}
                 columns={columns.concat(actionColumn)}

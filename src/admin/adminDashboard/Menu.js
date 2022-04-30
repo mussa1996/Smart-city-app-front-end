@@ -1,13 +1,44 @@
 import React, { Component } from 'react'
+import Button from '@mui/material/Button';
 
+import jwt_decode from "jwt-decode";
+let user;
+let decoded;
+let photo;
+let logout;
 export default class Menu extends Component {
+           
+            constructor(props) {
+              super(props);
+              this.state = {logout: '',
+            user: '',
+            decoded: '',
+            photo: ''};
+
+            
+            }
+           
+            async componentDidMount() {
+              user = localStorage.getItem('userToken');
+              decoded = jwt_decode(user);
+              console.log(decoded.name);
+              console.log(decoded.photo);
+              this.setState({
+                user: decoded.name,
+                decoded: decoded,
+                photo: decoded.photo,
+              });
+            }
+           
+           
+
     render() {
         return (
           <div>
   <aside className="main-sidebar sidebar-dark-primary elevation-4">
     {/* Brand Logo */}
-    <a href="/dashboard" className="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="Smart city Logo" className="brand-image img-circle elevation-3" style={{opacity: '.8'}} />
+    <a href="/admin-dashboard" className="brand-link">
+    
       <span className="brand-text font-weight-light">Smart City</span>
     </a>
     {/* Sidebar */}
@@ -15,10 +46,10 @@ export default class Menu extends Component {
       {/* Sidebar user panel (optional) */}
       <div className="user-panel mt-3 pb-3 mb-3 d-flex">
         <div className="image">
-          <img src="../../../images/image.png" className="img-circle elevation-2" alt="User Image" />
+          <img src={this.state.photo} className="img-circle elevation-2" alt="User Image" />
         </div>
         <div className="info">
-          <a href="#" className="d-block">Mussa</a>
+          <a href="#" className="d-block">{this.state.user}</a>
         </div>
       </div>
       {/* Sidebar Menu */}
@@ -36,7 +67,7 @@ export default class Menu extends Component {
             </a>
             <ul className="nav nav-treeview">
               <li className="nav-item">
-                <a href="./dashboard" className="nav-link active">
+                <a href="/admin-dashboard" className="nav-link active">
                   <i className="far fa-circle nav-icon" />
                   <p>Dashboard</p>
                 </a>
@@ -86,6 +117,13 @@ export default class Menu extends Component {
         </ul>
        
       </nav>
+      <div className="mt-3 p-3">
+      <Button variant="contained" className="d-block" onClick={()=>{
+ logout = localStorage.removeItem('userToken');
+ this.setState({logout: logout});
+ window.location.href = '/login';
+      }}>Log Out</Button>
+      </div>
       {/* /.sidebar-menu */}
     </div>
     {/* /.sidebar */}

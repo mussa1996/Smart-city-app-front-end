@@ -38,7 +38,33 @@
 
    
   }
-    .btnb:hover {
+  .btnbb {
+    background: #080808 !important;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    color: #fff;
+    font-size: larger;
+    cursor: pointer;
+    text-align: center;
+    text-align: center;   
+    width: 100%;  
+    height: 50px;  
+    margin-top: 20px;
+
+   
+  }
+  .btnbb:hover{
+    background: rgb(53, 42, 42) !important;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    color: #fff;
+    font-size: larger;
+    cursor: pointer;
+    text-align: center;
+}
+    .btnb:hover{
         background: rgb(53, 42, 42) !important;
         border: none;
         border-radius: 5px;

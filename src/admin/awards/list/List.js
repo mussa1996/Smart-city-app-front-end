@@ -110,7 +110,7 @@ const List=()=>{
         return (
 
             <div style={{ height: 500, width: '100%' }}>
-              <input type="text" placeholder='Search' className='search' onChange={handleSearch}></input>
+              {/* <input type="text" placeholder='Search' className='search' onChange={handleSearch}></input> */}
               <DataGrid
                 rows={rowData}
                 columns={columns.concat(actionColumn)}

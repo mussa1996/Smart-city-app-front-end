@@ -9,6 +9,7 @@ const AdmDashboardWrapper = (props)=>{
         <React.Fragment class="wrapper">
            <Header />
            <Menu />
+           
            <div className="content-wrapper">
              {props.children}
              </div>

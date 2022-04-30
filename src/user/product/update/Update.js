@@ -1,7 +1,7 @@
 import './update.css'
 import {useState,useEffect} from 'react';
 import cogoToast from 'cogo-toast';
-import { useHistory } from 'react-router-dom';
+import { useHistory ,Link} from 'react-router-dom';
 import axios from 'axios';
 
 function UpdateProduct(){
@@ -79,7 +79,9 @@ const handleSubmit=async(e)=>{
     <input type="text" placeholder="Description" value={description} onChange={(e)=>setDescription(e.target.value)} className="form-control"/><br/>
   <input type="file" placeholder="photo"  onChange={(e)=>setPhoto(e.target.files[0])} className="form-control"/>
   <button  onClick={handleSubmit} className="btnb">Update Product</button>
-
+  <Link to="/user/product/list">
+  <button  className="btnbb">Back</button>
+            </Link>
                
                </form>
         </div>

@@ -6,14 +6,14 @@ import { DataGrid,GridColDef } from '@mui/x-data-grid';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
-
+import jwt_decode from "jwt-decode";
 const columns=[
     { field: '_id', headerName: 'ID', width: 70, hide: true },
     { field: 'name', headerName: 'Name', width: 130 },
     { field: 'business_id', headerName: 'Business Name', width: 130,
     return: function(item) { 
-      console.log("business data",item.business_id.business_name)
-     return item.business_id.business_name;
+      console.log("business data",item.business_id.name)
+     return item.business_id.name;
  
    }
   },
@@ -25,7 +25,10 @@ const List=()=>{
     const [service,setService]=useState([]);
     const [search,setSearch]=useState('');
     const getServiceData=()=>{
-        axios.get('http://localhost:4500/api/service/getAll')
+      const user= localStorage.getItem('userToken');
+      const decoded = jwt_decode(user);
+      const userId=decoded._id;
+        axios.get(`http://localhost:4500/api/service/getServiceById?business_id=${userId}`)
         .then(res=>{
           setService(res.data.service);
           console.log("award data",res.data.service);
@@ -114,7 +117,7 @@ const List=()=>{
             </Link>
           </div>
               <div style={{ height: 500, width: '100%' }}>
-              <input type="text" placeholder='Search' className='search' onChange={handleSearch}></input>
+              {/* <input type="text" placeholder='Search' className='search' onChange={handleSearch}></input> */}
               <DataGrid
                 rows={rowData}
                 columns={columns.concat(actionColumn)}

@@ -23,7 +23,7 @@ function Signup (props){
 
     initialValues:{
 
-      business_name:'',
+      name:'',
       email:'',
       phone:'',
       password:'',
@@ -35,7 +35,7 @@ function Signup (props){
     },
      
     validationSchema:Yup.object({
-    business_name: Yup.string().max(50, 'Business name is too long').required('Business name is required'),
+    name: Yup.string().max(50, 'Business name is too long').required('Business name is required'),
     owner_name: Yup.string().max(50, 'Owner name is too long').required('Owner name is required'),
     category: Yup.string().required('Category is required'),
     address: Yup.string().max(50, 'Address is too long').required('Address is required'),
@@ -54,7 +54,7 @@ function Signup (props){
 
   const history = useHistory();
   const [showPassword, setShowPassword] = useState(false);
-  const [business_name, setBusinessName] = useState('');
+  const [name, setName] = useState('');
   const [owner_name, setOwnerName] = useState('');
   const [category, setCategory] = useState('');
   const [address, setAddress] = useState('');
@@ -124,7 +124,7 @@ function Signup (props){
     //   };
     const [errors, setErrors] = useState({})
     const [values, setValues] = useState({
-      business_name:'',
+      name:'',
       email:'',
       phone:'',
       password:'',
@@ -143,16 +143,16 @@ function Signup (props){
 
   //   const validation = (empData) => {
   //     let errors={}
-  //             if (!empData.business_name) {
+  //             if (!empData.name) {
             
-  //           errors.business_name= "*Please enter your business name.";
+  //           errors.name= "*Please enter your business name.";
   //         }
-  //         else if (empData.business_name.length < 3) {
-  //           errors.business_name= "*Your name is too short.";
+  //         else if (empData.name.length < 3) {
+  //           errors.name= "*Your name is too short.";
   //         }
-  //         else if(!empData.business_name.match(/^[a-zA-Z ]*$/)) {
+  //         else if(!empData.name.match(/^[a-zA-Z ]*$/)) {
               
-  //             errors.business_name = "Please enter alphabet characters only.";
+  //             errors.name = "Please enter alphabet characters only.";
   //           }
           
   //         if (!empData.owner_name) {
@@ -226,7 +226,7 @@ const handleSubmit=async(e)=>{
     //     console.log(values)
   //   if (this.validateForm()) {
   //     let fields = {};
-  //     fields["business_name"] = "";
+  //     fields["name"] = "";
   //     fields["email"] = "";
   //     fields["phone"] = "";
   //     fields["password"] = "";
@@ -238,7 +238,7 @@ const handleSubmit=async(e)=>{
   //     this.setState({fields:fields});
   // }
     const formData=new FormData();
-    formData.append('business_name',business_name);
+    formData.append('name',name);
     formData.append('owner_name',owner_name);
     formData.append('category',category);
     formData.append('address',address);
@@ -249,7 +249,7 @@ const handleSubmit=async(e)=>{
     formData.append('photo',photo);
     formData.append('latitude',locatio.coordinates.lat);
     formData.append('longitude',locatio.coordinates.lng);
-    console.warn("business data",business_name,owner_name,category,address,email,website,password,phone,photo,locatio.coordinates.lat,locatio.coordinates.lng);
+    console.warn("business data",name,owner_name,category,address,email,website,password,phone,photo,locatio.coordinates.lat,locatio.coordinates.lng);
     axios.post('http://localhost:4500/api/business/signup',formData)
     .then(res=>{
         cogoToast.success('Business Created Successfully',{position:'top-center'});
@@ -270,15 +270,15 @@ const handleSubmit=async(e)=>{
 //   let errors = {};
 //   let formIsValid = true;
 
-//   if (!fields["business_name"]) {
+//   if (!fields["name"]) {
 //     formIsValid = false;
-//     errors["business_name"] = "*Please enter your business name.";
+//     errors["name"] = "*Please enter your business name.";
 //   }
 
-//   if (typeof fields["business_name"] !== "undefined") {
-//     if (!fields["business_name"].match(/^[a-zA-Z ]*$/)) {
+//   if (typeof fields["name"] !== "undefined") {
+//     if (!fields["name"].match(/^[a-zA-Z ]*$/)) {
 //       formIsValid = false;
-//       errors["business_name"] = "*Please enter alphabet characters only.";
+//       errors["name"] = "*Please enter alphabet characters only.";
 //     }
 //   }
 //   if (!fields["owner_name"]) {
@@ -363,7 +363,7 @@ const handleSubmit=async(e)=>{
    console.log("props",props)
   }
   const handleChange=(e)=>{
-    props.onBlur(props.business_name,e.target.value)
+    props.onBlur(props.name,e.target.value)
   }
   const handleSelect = address => {
     geocodeByAddress(address)
@@ -406,15 +406,15 @@ const handleSubmit=async(e)=>{
                    
                     type="text"
                     className="form-control" 
-                    id='business_name'
-                    name="business_name"
+                    id='name'
+                    name="name"
                     placeholder="Business Name"
-                    value={business_name}
-                    onChange={(e) => setBusinessName(e.target.value)}
-                    // {...formik.getFieldProps("business_name")}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    // {...formik.getFieldProps("name")}
                    
                   ></input>
-                   {formik.touched.business_name && formik.errors.business_name ? <span style={{color:'red'}}>{formik.errors.business_name}</span> : null}
+                   {formik.touched.name && formik.errors.name ? <span style={{color:'red'}}>{formik.errors.name}</span> : null}
                   </div>
                  
 
@@ -505,10 +505,10 @@ const handleSubmit=async(e)=>{
                 <div className="name mb-3">
                   <select name="classSelect" onChange={(e) => setCategory(e.target.value)}  >
                   <option value="">Please choose category</option>
-                    <option value="Restaurant">Restaurant</option>
-                    <option value="Hotel">Hotel</option>
-                    <option value="Attraction">Attraction</option>
-                    <option value="Other">Other</option>
+                    <option value="restaurants">Restaurant</option>
+                    <option value="hotels">Hotel</option>
+                    <option value="attractions">Attraction</option>
+                    <option value="others">Other</option>
                     
                   </select>
                   {formik.touched.category && formik.errors.category ? <span style={{color:'red'}}>{formik.errors.category}</span> : null}

@@ -5,6 +5,8 @@ import {signin} from '../../actions/LoginAction'
 import { connect } from 'react-redux'
 import cogoToast from 'cogo-toast';
 import validation from "../../helper/validation";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 function Login(props) {
     const [errors, setErrors] = useState({})
@@ -26,12 +28,13 @@ function Login(props) {
         })
     }
     const handleSubmit = (e) => {
+        
         e.preventDefault();
       
         props.signIn(state)
         if (props.login.error) {
             cogoToast.error(
-                "Failed to login",
+                "wrong email or password",
                 <div>
                   <b>oops!</b>
                     <div>{props.login.message}</div>
@@ -96,6 +99,7 @@ function Login(props) {
                                     </div>
 
                                     {errors.password && <p className="error">{errors.password}</p>}
+                                    
                                     <div className="extra mt-3 row justify-content-between">
                                         <div className="col-6">
                                             <div className="form-check">

@@ -1,7 +1,7 @@
 import './new.css'
 import {useState,useEffect} from 'react';
 import cogoToast from 'cogo-toast';
-import { useHistory } from 'react-router-dom';
+import { useHistory ,Link} from 'react-router-dom';
 import axios from 'axios';
 
 function AddService(){
@@ -33,6 +33,9 @@ const handleSubmit=async(e)=>{
            
   <input type="text" placeholder="Name" onChange={(e)=>setName(e.target.value)} className="form-control" required /><br/>
   <button  onClick={handleSubmit} className="btnb">Add Award</button>
+  <Link to="/user/service/list">
+  <button  className="btnbb">Back</button>
+            </Link>
 
                
                </form>

@@ -40,6 +40,9 @@ console.log("user",product);
         {/* <Navbar /> */}
         <div className="top">
           <div className="left">
+          <Link to="/user/product/list">
+            <div className="editButton" >Back</div>
+            </Link>
             <h1 className="title">Information</h1>
             <div className="item">
               <img
@@ -48,7 +51,7 @@ console.log("user",product);
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">Product Details</h1>
+                <h1 className="title">Product Details</h1>
                 <div className="detailItem">
                   <span className="itemKey">Project Name:</span>
                   <span className="itemValue">{rowData.name}</span>

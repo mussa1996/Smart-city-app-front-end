@@ -18,14 +18,16 @@
 
         .editButton {
           position: absolute;
-          top: 0;
-          right: 0;
           padding: 5px;
-          font-size: 12px;
+          margin: 20px;
+          font-size: 20px;
           color: #7451f8;
           background-color: #7551f818;
           cursor: pointer;
-          border-radius: 0px 0px 0px 5px;
+          border-radius: 5px;
+        }
+        .editButton:hover {
+          color: black;
         }
 
         .item {
@@ -76,9 +78,11 @@
     }
 
     .title {
-      font-size: 16px;
-      color: lightgray;
+      font-size: 20px;
+      color: black;
+      font-weight: bold;
       margin-bottom: 20px;
+
     }
   }
 }
