@@ -44,7 +44,8 @@ const Index = () => {
 
       getPlacesData(type, bounds.sw, bounds.ne)
         .then((data) => {
-          setPlaces(data.filter((place) => place.name > 0));
+          setPlaces(data.filter((place) => place.name ));
+          console.log(data.filter((place) => place.name ));
           setFilteredPlaces([]);
           setRating('');
           setIsLoading(false);

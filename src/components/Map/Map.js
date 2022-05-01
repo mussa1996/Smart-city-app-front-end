@@ -41,7 +41,7 @@ const Map = ({ coords, places, setCoords, setBounds, setChildClicked, weatherDat
                   <Typography className={classes.typography} variant="subtitle2" gutterBottom> {place.name}</Typography>
                   <img
                     className={classes.pointer}
-                    src={'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'}
+                    src={place.photo}
                   />
                   <Rating name="read-only" size="small" value={Number(place.rating)} readOnly />
                 </Paper>
