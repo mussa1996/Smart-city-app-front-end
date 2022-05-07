@@ -31,6 +31,7 @@ function Signup (props){
       address:'',
       website:'',
       category:'',
+      role:'',
 
     },
      
@@ -38,6 +39,7 @@ function Signup (props){
     name: Yup.string().max(50, 'Business name is too long').required('Business name is required'),
     owner_name: Yup.string().max(50, 'Owner name is too long').required('Owner name is required'),
     category: Yup.string().required('Category is required'),
+    role: Yup.string().required('Role is required'),
     address: Yup.string().max(50, 'Address is too long').required('Address is required'),
     email: Yup.string().email('Invalid email').required('Email is required'),
     website: Yup.string().max(1000, 'Website is too long').required('Website is required'),
@@ -57,6 +59,7 @@ function Signup (props){
   const [name, setName] = useState('');
   const [owner_name, setOwnerName] = useState('');
   const [category, setCategory] = useState('');
+  const [role, setRole] = useState('');
   const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
   const [website, setWebsite] = useState('');
@@ -133,6 +136,7 @@ function Signup (props){
       photo:'',
       website:'',
       category:'',
+      role:'',
     })
     // const handleChange = (event) => {
     //     setValues({
@@ -241,6 +245,7 @@ const handleSubmit=async(e)=>{
     formData.append('name',name);
     formData.append('owner_name',owner_name);
     formData.append('category',category);
+    formData.append('role',role);
     formData.append('address',address);
     formData.append('email',email);
     formData.append('website',website);
@@ -249,7 +254,7 @@ const handleSubmit=async(e)=>{
     formData.append('photo',photo);
     formData.append('latitude',locatio.coordinates.lat);
     formData.append('longitude',locatio.coordinates.lng);
-    console.warn("business data",name,owner_name,category,address,email,website,password,phone,photo,locatio.coordinates.lat,locatio.coordinates.lng);
+    console.warn("business data",name,owner_name,category,role,address,email,website,password,phone,photo,locatio.coordinates.lat,locatio.coordinates.lng);
     axios.post('http://localhost:4500/api/business/signup',formData)
     .then(res=>{
         cogoToast.success('Business Created Successfully',{position:'top-center'});
@@ -512,6 +517,16 @@ const handleSubmit=async(e)=>{
                     
                   </select>
                   {formik.touched.category && formik.errors.category ? <span style={{color:'red'}}>{formik.errors.category}</span> : null}
+                </div>
+                <div className="name mb-3">
+                  <select name="classSelect" onChange={(e) => setRole(e.target.value)}  >
+                  <option value="">Please choose role</option>
+                    <option value="business">Business</option>
+                    <option value="user">User</option>
+                    <option value="others">Other</option>
+                    
+                  </select>
+                  {formik.touched.role && formik.errors.role ? <span style={{color:'red'}}>{formik.errors.role}</span> : null}
                 </div>
 
                 <div className="email mb-3">

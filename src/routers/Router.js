@@ -43,6 +43,10 @@ import ServiceNew from "../user/userDashboard/UserComponents/services/NewService
 import { productInputs, userInputs } from "../user/product/formSource";
 import "../App.css";
 import ProtectedRoute from "./ProtectedRoute";
+import AvailableProduct from "../components/productComponent/ProductList";
+import RegisterUser from "../components/views/RegisterUser";
+import Check from "../components/views/Check";
+import AddToCat from "../helper/add-to-cat"
 export default function Routers() {
   const { darkMode } = useContext(DarkModeContext);
 
@@ -54,10 +58,14 @@ export default function Routers() {
           <Switch>
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
+            <Route exact path="/register/user" component={RegisterUser} />
+            <Route exact path="/check" component={Check} />
             <Route exact path="/forgot-password" component={Forgot} />
             <Route exact path="/verification" component={Verify} />
             <Route exact component={Forgot} path="/forgot-password" />
             <Route exact component={Resetpassword} path="/resetpassword" />
+            <Route exact path="/availableProduct" component={AvailableProduct}/>
+            <ProtectedRoute exact path="/add-to-cat" component={AddToCat}/>
             {/* <Route path='/' component={Index} /> */}
 
             {/* admin routes */}

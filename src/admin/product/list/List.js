@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 
 const columns= [
-    { field: '_id', headerName: 'ID', width: 70, hide: true },
+    { field: 'id', headerName: 'ID', width: 70, hide: true },
     { field: 'name', headerName: 'Product Name', width: 130 },
     { field: 'price', headerName: 'Product Price', width: 130 },
     { field: 'price_level', headerName: 'Price level', width: 130 },
@@ -80,12 +80,12 @@ const List=()=>{
               renderCell: (params) => {
                 return (
                   <div className="cellAction">
-                    <Link to={`/product/single/${params.row._id}`} style={{ textDecoration: "none" }}>
-                      <div className="viewButton" onClick={() => handleView(params.row._id)} >View</div>
+                    <Link to={`/product/single/${params.row.id}`} style={{ textDecoration: "none" }}>
+                      <div className="viewButton" onClick={() => handleView(params.row.id)} >View</div>
                     </Link>
                     <div
                       className="deleteButton"
-                      onClick={() => handleDelete(params.row._id)}
+                      onClick={() => handleDelete(params.row.id)}
                     >
                       Delete
                     </div>
@@ -116,7 +116,7 @@ const List=()=>{
                 rows={rowData}
                 columns={columns.concat(actionColumn)}
                 pageSize={7}
-                getRowId={(row) => row._id}
+                getRowId={(row) => row.id}
                 rowsPerPageOptions={[7]}
                 checkboxSelection
               />
