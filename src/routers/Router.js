@@ -47,6 +47,7 @@ import AvailableProduct from "../components/productComponent/ProductList";
 import RegisterUser from "../components/views/RegisterUser";
 import Check from "../components/views/Check";
 import AddToCat from "../helper/add-to-cat"
+import Payment from "../helper/Payment";
 export default function Routers() {
   const { darkMode } = useContext(DarkModeContext);
 
@@ -65,9 +66,10 @@ export default function Routers() {
             <Route exact component={Forgot} path="/forgot-password" />
             <Route exact component={Resetpassword} path="/resetpassword" />
             <Route exact path="/availableProduct" component={AvailableProduct}/>
-            <ProtectedRoute exact path="/add-to-cat" component={AddToCat}/>
+            <Route exact path="/add-to-cat/:id" component={AddToCat}/>
+            <ProtectedRoute exact path="/payment" component={Payment}/> 
             {/* <Route path='/' component={Index} /> */}
-
+   
             {/* admin routes */}
             <ProtectedRoute path="/admin-dashboard" >
               <ADashboard />

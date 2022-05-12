@@ -18,6 +18,7 @@ function Signup (props){
   const [password, setPassword] = useState('');
   const [photo, setPhoto] = useState('');
     const [errors, setErrors] = useState({})
+    const [agree, setAgree] = useState(false);
     
 const handleSubmit=async(e)=>{
     e.preventDefault();
@@ -51,7 +52,15 @@ const handleSubmit=async(e)=>{
       setShowPassword(true);
     }
   };
+  // handleChange(event) {
+  //   let target = event.target;
+  //   let value = target.type === "checkbox" ? target.checked : target.value;
+  //   let name = target.name;
 
+  //   this.setState({
+  //     [name]: value
+  //   });
+  // }
   return (
     
     
@@ -184,6 +193,22 @@ const handleSubmit=async(e)=>{
                     </button>
                   </div>
                 </div>
+                <div className="formField">
+            <label className="formFieldCheckboxLabel">
+              <input
+                className="formFieldCheckbox"
+                type="checkbox"
+                name="hasAgreed"
+                value={agree}
+                onChange={(e) => setAgree(e.target.type === "checkbox" ? e.target.checked : e.target.value)}
+               required
+              />{" "}
+              I agree all statements <span>if you finish to make order you are not allowed to cancel it.</span>
+              {/* <a href="null" className="formFieldTermsLink">
+                terms of service
+              </a> */}
+            </label>
+          </div>
                 <div className="text-center">
                   <button
                     type="submit"
@@ -192,6 +217,8 @@ const handleSubmit=async(e)=>{
                     Sign Up
                   </button>
                 </div>
+               
+             
               </form>
               
 

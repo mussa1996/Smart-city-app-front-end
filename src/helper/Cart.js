@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCart } from 'react-use-cart';
+import {Link} from 'react-router-dom';
 const Cart = (props) => {
-    console.log("props",props);
     const {
         isEmpty,
         totalUniqueItems,
@@ -14,6 +14,7 @@ const Cart = (props) => {
 
     }=useCart();
     if (isEmpty) return <h1 className="text-center">Your Cart is Empty</h1>
+    // console.log("total",cartTotal);
     return (
         <section className="py-4 container">
             <div className="row justify-content-center">
@@ -66,7 +67,9 @@ const Cart = (props) => {
                     className="btn btn-danger ms-2"
                     onClick={()=>emptyCart()}
                     >Clear Cart</button>
-                  <button className="btn btn-primary ms-2">Buy Now</button>
+                 <Link to="/payment">
+                 <button className="btn btn-primary ms-2">Checkout</button>
+                 </Link>
               </div>
             </div>
         </section>

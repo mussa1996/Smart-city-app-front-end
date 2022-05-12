@@ -27,7 +27,7 @@ export const LOGOUT = 'LOGOUT'
                 window.location.href = "/admin-dashboard";
             }
             if (decoded.role==='user'){
-                window.location.href = "/availableProduct"
+                window.location.href = "/payment";
             }
             if (decoded.role==='business'){
                 window.location.href = "/user-dashboard"

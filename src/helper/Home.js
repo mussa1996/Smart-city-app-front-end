@@ -2,11 +2,16 @@ import React from 'react';
 import Itemcard from './Itemcard';
 import { useState,useEffect } from "react";
 import axios from 'axios';
-const Home = () => {
+const Home = ({place}) => {
+    console.log("place data",place);
     // console.warn(data.productData);
     const [product,setProduct]=useState([]);
+    
+   
     const getProductData=()=>{
-        axios.get('http://localhost:4500/api/product/getAll')
+        const params = window.location.pathname.split("/");
+    const userId = params[params.length - 1];
+        axios.get(`http://localhost:4500/api/product/getProductById?business_id=${userId}`)
         .then(res=>{
             setProduct(res.data.product);
             console.log(res.data.product);
