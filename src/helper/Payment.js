@@ -6,9 +6,11 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { useCart } from 'react-use-cart';
 import jwt_decode from 'jwt-decode';
+import { useHistory } from 'react-router-dom';
 const MySwal = withReactContent(Swal);
 
 function App() {
+  const history = useHistory();
 const data=localStorage.getItem('react-use-cart');
 const product = JSON.parse(data);
 const businessId=product.items[0].business_id;
@@ -53,10 +55,11 @@ const businessId=product.items[0].business_id;
         },
       });
       if (response.status === 200) {
-       
+        history.push('/order-dashboard');
         handleSuccess();
       }
     } catch (error) {
+      history.push('/payment');
       handleFailure();
       console.log(error);
     }

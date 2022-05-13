@@ -32,7 +32,7 @@ const handleSubmit=async(e)=>{
             <form>
            
   <input type="text" placeholder="Name" onChange={(e)=>setName(e.target.value)} className="form-control" required /><br/>
-  <button  onClick={handleSubmit} className="btnb">Add Award</button>
+  <button  onClick={handleSubmit} className="btnb">Add Service</button>
   <Link to="/user/service/list">
   <button  className="btnbb">Back</button>
             </Link>

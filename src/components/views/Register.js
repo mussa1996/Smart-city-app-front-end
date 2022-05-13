@@ -421,12 +421,6 @@ const handleSubmit=async(e)=>{
                   ></input>
                    {formik.touched.name && formik.errors.name ? <span style={{color:'red'}}>{formik.errors.name}</span> : null}
                   </div>
-                 
-
-         <p></p>
-
-                
-
                 <div className="name mb-3">
                   <input
                     type="text"

@@ -12,6 +12,7 @@ function AddAward(){
     const [images,setImages]=useState('');
 const handleSubmit=async(e)=>{
     const token = localStorage.getItem('userToken')
+    console.log("token",token);
     e.preventDefault();
     const formData=new FormData();
     formData.append('display_name',display_name);

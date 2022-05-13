@@ -49,7 +49,7 @@ export default class Menu extends Component {
           <img src={this.state.photo} className="img-circle elevation-2" alt="User Image" />
         </div>
         <div className="info">
-          <a href="#" className="d-block">{this.state.user}</a>
+          <a href="/admin-dashboard" className="d-block">{this.state.user}</a>
         </div>
       </div>
       {/* Sidebar Menu */}

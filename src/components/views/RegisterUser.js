@@ -224,6 +224,12 @@ const handleSubmit=async(e)=>{
 
               <hr />
               <div className="auth-option text-center pt-2">
+              <Link className="text-link" to="/">
+              <h>
+                  Home
+                </h>
+                </Link>
+                <br />
                 Have an account?{" "}
                 <Link className="text-link" to="/login">
                   Sign in

@@ -11,7 +11,6 @@ const columns= [
     { field: 'id', headerName: 'ID', width: 70, hide: true },
     { field: 'name', headerName: 'Product Name', width: 130 },
     { field: 'price', headerName: 'Product Price', width: 130 },
-    { field: 'price_level', headerName: 'Price level', width: 130 },
     { field: 'description', headerName: 'Description', width: 130 },
     { field: 'business_id', headerName: 'Business Name', width: 130 },
     { field: 'photo', headerName: 'Photo', width: 200 ,
@@ -62,7 +61,7 @@ const List=()=>{
             })
         };
         const handleView = (id) => {
-          axios.delete(`http://localhost:4500/api/product/getOne?id=${id}`)
+          axios.get(`http://localhost:4500/api/product/getOne?id=${id}`)
           .then(res=>{
               console.log(res);
               getProductData();  

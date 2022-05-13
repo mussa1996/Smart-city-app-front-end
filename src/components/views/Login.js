@@ -40,7 +40,6 @@ function Login(props) {
   };
   if (props.login.success) {
     cogoToast.success("Successfully Login");
-    props.history.push("/user-dashboard");
   }
 
   const togglePassword = (e) => {
@@ -160,7 +159,14 @@ function Login(props) {
               </form>
 
               <hr />
+                
               <div className="auth-option text-center pt-2">
+              <Link className="text-link" to="/">
+              <h>
+                  Home
+                </h>
+                </Link>
+                <br />
                 No Account?{" "}
                 <Link className="text-link" to="/check">
                   Sign up{" "}

@@ -48,7 +48,7 @@ const List=()=>{
             })
         };
         const handleView = (id) => {
-          axios.delete(`http://localhost:4500/api/service/getOne?id=${id}`)
+          axios.get(`http://localhost:4500/api/service/getOne?id=${id}`)
           .then(res=>{
               console.log(res);
               getServiceData();  

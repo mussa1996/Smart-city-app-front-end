@@ -9,25 +9,14 @@ import Autocomplete from '@mui/material/Autocomplete';
 import jwt_decode from "jwt-decode";
 const columns= [
     { field: '_id', headerName: 'ID', width: 70, hide: true },
-    { field: 'name', headerName: 'Product Name', width: 130 },
-    { field: 'price', headerName: 'Product Price', width: 130 },
-    { field: 'description', headerName: 'Description', width: 130 },
-    { field: 'business_id', headerName: 'Business Name', width: 130 },
-    { field: 'photo', headerName: 'Photo', width: 200 ,
-    renderCell: (params) => {
-      console.log("parama",params)
-        return (
-          <div className="cellWithImg">
-            <img className="cellImg" src={params.row.photo} alt="avatar" />
-            {params.row.name}
-          </div>
-        );
-      },
-     
-},
-
-    
-
+    { field: 'user', headerName: 'User ID', width: 130 },
+    { field: 'business', headerName: 'Business ID', width: 130 },
+    { field: 'total_amount', headerName: 'Total Amount', width: 130 },
+    { field: 'email', headerName: 'Email', width: 130 },
+    { field: 'address', headerName: 'Address', width: 130 },
+    { field: 'payment_id', headerName: 'Payment ID', width: 130 },
+    { field: 'payment_date', headerName: 'Payment Date', width: 130 },
+    // { field: 'payment_status', headerName: 'Payment Status', width: 130 },
 ];
 
 const List=()=>{
@@ -36,11 +25,11 @@ const List=()=>{
     const getProductData=()=>{
       const user= localStorage.getItem('userToken');
       const decoded = jwt_decode(user);
+      // console.log("decoded",decoded);
       const userId=decoded._id;
-        axios.get(`http://localhost:4500/api/product/getProductById?business_id=${userId}`)
+        axios.get(`http://localhost:4500/api/order/getPaymentByUserId?id=${userId}`)
         .then(res=>{
-          setProduct(res.data.product);
-          console.log("product data",res.data.product);
+          setProduct(res.data);
         })
         .catch(err=>{
             console.log(err);
@@ -55,7 +44,7 @@ const List=()=>{
         const [data, setData] = useState(rowData);
         
         const handleDelete = (id) => {
-            axios.delete(`http://localhost:4500/api/product/delete?id=${id}`)
+            axios.delete(`http://localhost:4500/api/order/deletePayment?id=${id}`)
             .then(res=>{
                 console.log(res);
                 getProductData();  
@@ -66,9 +55,9 @@ const List=()=>{
             })
         };
         const handleView = (id) => {
-          axios.get(`http://localhost:4500/api/product/getOne?id=${id}`)
+          axios.get(`http://localhost:4500/api/order/getPaymentById?id=${id}`)
           .then(res=>{
-              console.log(res);
+              console.log(res.data);
               getProductData();  
           })
 
@@ -76,31 +65,29 @@ const List=()=>{
               console.log(err);
           })
       };
-        const actionColumn = [
-            {
-              field: "action",
-              headerName: "Action",
-              width: 200,
-              renderCell: (params) => {
-                return (
-                  <div className="cellAction">
-                    <Link to={`/user/product/single/${params.row.id}`} style={{ textDecoration: "none" }}>
-                      <div className="viewButton" onClick={() => handleView(params.row.id)} >View</div>
-                    </Link>
-                    <div
-                      className="deleteButton"
-                      onClick={() => handleDelete(params.row.id)}
-                    >
-                      Delete
-                    </div>
-                    <Link to={`/user/product/update/${params.row.id}`}style={{ textDecoration: "none" }}>
-                      <div className="viewButton" onClick={() => handleView(params.row.id)} >Update</div>
-                    </Link>
-                  </div>
-                );
-              },
-            },
-          ];
+        // const actionColumn = [
+        //     {
+        //       field: "action",
+        //       headerName: "Action",
+        //       width: 200,
+        //       renderCell: (params) => {
+        //         return (
+        //           <div className="cellAction">
+        //             <Link to={`/order/single/${params.row._id}`} style={{ textDecoration: "none" }}>
+        //               <div className="viewButton" onClick={() => handleView(params.row._id)} >View</div>
+        //             </Link>
+        //             <div
+        //               className="deleteButton"
+        //               onClick={() => handleDelete(params.row._id)}
+        //             >
+        //               Delete
+        //             </div>
+                   
+        //           </div>
+        //         );
+        //       },
+        //     },
+        //   ];
          
         const handleSearch = (e) => {
             setSearch(e.target.value);
@@ -118,20 +105,16 @@ const List=()=>{
         return (
           <><div className="datatableTitle">
             <div className='tableTitle'>
-            Product Lists
+            Order Lists
             </div>
-
-            <Link to="/product/new" className="link">
-              Add New
-            </Link>
           </div>
           <div style={{ height: 500, width: '100%' }}>
               {/* <input type="text" placeholder='Search' className='search' onChange={handleSearch}></input> */}
               <DataGrid
                 rows={rowData}
-                columns={columns.concat(actionColumn)}
+                columns={columns}
                 pageSize={7}
-                getRowId={(row) => row.id}
+                getRowId={(row) => row._id}
                 rowsPerPageOptions={[7]}
                 checkboxSelection />
             </div></>

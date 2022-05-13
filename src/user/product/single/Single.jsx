@@ -53,16 +53,12 @@ console.log("user",product);
               <div className="details">
                 <h1 className="title">Product Details</h1>
                 <div className="detailItem">
-                  <span className="itemKey">Project Name:</span>
+                  <span className="itemKey">Product Name:</span>
                   <span className="itemValue">{rowData.name}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Price:</span>
                   <span className="itemValue">{rowData.price}</span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Price Level:</span>
-                  <span className="itemValue">{rowData.price_level}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Description:</span>

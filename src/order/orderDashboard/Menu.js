@@ -39,7 +39,7 @@ export default class Menu extends Component {
   <aside className="main-sidebar sidebar-dark-primary elevation-4">
   
     {/* Brand Logo */}
-    <a href="/user-dashboard" className="brand-link">
+    <a href="/order-dashboard" className="brand-link">
       <span className="brand-text font-weight-light">Smart City</span>
     </a>
     {/* Sidebar */}
@@ -50,7 +50,7 @@ export default class Menu extends Component {
           <img src={this.state.photo} className="img-circle elevation-2" alt="User Image"/>
         </div>
         <div className="info">
-          <a href="/user-dashboard" className="d-block" >{this.state.user}</a>
+          <a href="/order-dashboard" className="d-block" >{this.state.user}</a>
         </div>
       </div>
       {/* Sidebar Menu */}
@@ -68,69 +68,15 @@ export default class Menu extends Component {
             </a>
             <ul className="nav nav-treeview">
               <li className="nav-item">
-                <a href="/user-dashboard" className="nav-link active">
+                <a href="/order" className="nav-link active">
                   <i className="far fa-circle nav-icon" />
-                  <p>Dashboard</p>
+                  <p>payment</p>
                 </a>
               </li>
              
               
             </ul>
           </li>
-         
-          
-          <li className="nav-item has-treeview">
-            <a href="#" className="nav-link">
-              <i className="nav-icon fas fa-table" />
-              <p>
-                Models
-                <i className="fas fa-angle-left right" />
-              </p>
-            </a>
-            <ul className="nav nav-treeview">
-            <li className="nav-item">
-                <a href="/user/list" className="nav-link">
-                  <i className="far fa-circle nav-icon" />
-                  <p>Business</p>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="/user/product/list" className="nav-link">
-                  <i className="far fa-circle nav-icon" />
-                  <p>Product</p>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="/user/award/list" className="nav-link">
-                  <i className="far fa-circle nav-icon" />
-                  <p>Awards</p>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="/user/service/list" className="nav-link">
-                  <i className="far fa-circle nav-icon" />
-                  <p>Internal_service</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li className="nav-item has-treeview">
-            <a href="#" className="nav-link">
-              <i className="nav-icon fas fa-cart-shopping" />
-              <p>
-                Payment
-                <i className="fas fa-angle-left right" />
-              </p>
-            </a>
-            <ul className="nav nav-treeview">
-            <li className="nav-item">
-                <a href="/order-business" className="nav-link">
-                  <i className="far fa-circle nav-icon" />
-                  <p>Ordered</p>
-                </a>
-              </li>
-              </ul>
-            </li>
          
         </ul>
         <div>

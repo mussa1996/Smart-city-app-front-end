@@ -48,6 +48,13 @@ import RegisterUser from "../components/views/RegisterUser";
 import Check from "../components/views/Check";
 import AddToCat from "../helper/add-to-cat"
 import Payment from "../helper/Payment";
+import OrderList from "../order/orderDashboard/orderComponents/order/ListOrder";
+import OrderListByBusiness from "../order/orderDashboard/orderComponents/order/ListOrderByBusiness";
+import OrderSingle from "../order/orderDashboard/orderComponents/order/SingleOrder";
+import OrderDashboard from "../order/orderDashboard/orderComponents/Dashboard"
+import OrderHeader from "../order/orderDashboard/Header"
+import OrderMenu from "../order/orderDashboard/Menu"
+import OrderFooter from "../order/orderDashboard/Footer"
 export default function Routers() {
   const { darkMode } = useContext(DarkModeContext);
 
@@ -70,6 +77,18 @@ export default function Routers() {
             <ProtectedRoute exact path="/payment" component={Payment}/> 
             {/* <Route path='/' component={Index} /> */}
    
+            {/* order routes */}
+            <ProtectedRoute path="/order-dashboard" >
+              <OrderDashboard />
+              <OrderFooter />
+              <OrderHeader />
+              <OrderMenu />
+
+            </ProtectedRoute>
+            <ProtectedRoute path="/order" component={OrderList} />
+            <ProtectedRoute path="/order-business" component={OrderListByBusiness} />
+            <ProtectedRoute path="/order/single" component={OrderSingle} />
+
             {/* admin routes */}
             <ProtectedRoute path="/admin-dashboard" >
               <ADashboard />

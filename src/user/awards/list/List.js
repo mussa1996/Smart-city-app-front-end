@@ -91,7 +91,7 @@ const List=()=>{
             })
         };
         const handleView = (id) => {
-          axios.delete(`http://localhost:4500/api/award/getOne?id=${id}`)
+          axios.get(`http://localhost:4500/api/award/getOne?id=${id}`)
           .then(res=>{
               console.log(res);
               getAwardData();  
