@@ -2,6 +2,7 @@ import React from 'react';
 import Itemcard from './Itemcard';
 import { useState,useEffect } from "react";
 import axios from 'axios';
+import ButtonAppBar from './Navbar';
 const Home = ({place}) => {
     console.log("place data",place);
     // console.warn(data.productData);
@@ -29,6 +30,7 @@ const Home = ({place}) => {
     console.log("product",product);
     return (
         <>
+        <ButtonAppBar />
             <h1 className='text-center mt-3'> All Items</h1>
             <section className='py-4 containter'>
                 <div className='row justify-content-center'>

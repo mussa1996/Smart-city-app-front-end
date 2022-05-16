@@ -12,10 +12,18 @@ const columns= [
     { field: 'award_type', headerName: 'Award Type', width: 130 },
     { field: 'display_name', headerName: 'Award Name', width: 130 },
     { field: 'year', headerName: 'Year', width: 130 },
-    { field: 'business_id', headerName: 'Business Name', width: 130 },
+    { field: 'business_id', headerName: 'Business Name', width: 130,
+    renderCell: (params) => {
+      return (
+        <div>
+          {params.row.business_id.name}
+        </div>
+      );
+    }
+  },
     { field: 'images', headerName: 'Photo', width: 200 ,
     renderCell: (params) => {
-      console.log("parama",params)
+      console.log(params.row.business_id);
         return (
           <div className="cellWithImg">
             <img className="cellImg" src={params.row.images} alt="avatar" />

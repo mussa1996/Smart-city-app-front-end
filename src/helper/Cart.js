@@ -70,6 +70,7 @@ const Cart = (props) => {
                  <Link to="/payment">
                  <button className="btn btn-primary ms-2">Checkout</button>
                  </Link>
+
               </div>
             </div>
         </section>

@@ -11,11 +11,13 @@ const columns=[
     { field: '_id', headerName: 'ID', width: 70, hide: true },
     { field: 'name', headerName: 'Name', width: 130 },
     { field: 'business_id', headerName: 'Business Name', width: 130,
-    return: function(item) { 
-      console.log("business data",item.business_id.name)
-     return item.business_id.name;
- 
-   }
+    renderCell: (params) => {
+      return (
+        <div>
+          {params.row.business_id.name}
+        </div>
+      );
+    }
   },
     
 

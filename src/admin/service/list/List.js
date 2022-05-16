@@ -10,7 +10,14 @@ import Autocomplete from '@mui/material/Autocomplete';
 const columns= [
     { field: '_id', headerName: 'ID', width: 70, hide: true },
     { field: 'name', headerName: 'Name', width: 130 },
-    { field: 'business_id', headerName: 'Business Name', width: 130 },
+    { field: 'business_id', headerName: 'Business Name', width: 130,
+    renderCell: (params) => {
+      return (
+        <div>
+          {params.row.business_id.name}
+        </div>
+      );
+    } },
     
 
 ];

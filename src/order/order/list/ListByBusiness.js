@@ -9,8 +9,23 @@ import Autocomplete from '@mui/material/Autocomplete';
 import jwt_decode from "jwt-decode";
 const columns= [
     { field: '_id', headerName: 'ID', width: 70, hide: true },
-    { field: 'user', headerName: 'User ID', width: 130 },
-    { field: 'business', headerName: 'Business ID', width: 130 },
+    { field: 'user', headerName: 'User Name', width: 130 ,
+    renderCell: (params) => {
+      return (
+        <div>
+          {params.row.user.fullname}
+        </div>
+      );
+    }
+  },
+    { field: 'business', headerName: 'Business Name', width: 130,
+    renderCell: (params) => {
+      return (
+        <div>
+          {params.row.business.name}
+        </div>
+      );
+    } },
     { field: 'total_amount', headerName: 'Total Amount', width: 130 },
     { field: 'email', headerName: 'Email', width: 130 },
     { field: 'address', headerName: 'Address', width: 130 },

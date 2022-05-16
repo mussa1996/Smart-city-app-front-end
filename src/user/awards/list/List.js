@@ -22,12 +22,13 @@ const List=()=>{
     { field: 'display_name', headerName: 'Award Name', width: 130 },
     { field: 'year', headerName: 'Year', width: 130 },
     { field: 'business_id', headerName: 'Business Name', width: 130,
-   return: function(item) { 
-     console.log("business data",item)
-    return item.business_id;
-
-  } 
-    },
+    renderCell: (params) => {
+      return (
+        <div>
+          {params.row.business_id.name}
+        </div>
+      );
+    }},
     { field: 'photo', headerName: 'Photo', width: 200 ,
     renderCell: (params) => {
       // console.log("parama",params)

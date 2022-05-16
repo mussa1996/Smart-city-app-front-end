@@ -7,6 +7,7 @@ import withReactContent from 'sweetalert2-react-content';
 import { useCart } from 'react-use-cart';
 import jwt_decode from 'jwt-decode';
 import { useHistory } from 'react-router-dom';
+import Navbar from './Navbar';
 const MySwal = withReactContent(Swal);
 
 function App() {
@@ -66,8 +67,12 @@ const businessId=product.items[0].business_id;
   };
 
   return (
+    <div>
+      <Navbar/>
+    
     <div className="container">
-      <h2>Complete React & Stripe payment integration</h2>
+      
+      <h2>Complete payment </h2>
       <p>
         <span>Total Items: </span>
         {product.totalUniqueItems}
@@ -84,11 +89,11 @@ const businessId=product.items[0].business_id;
         label="Pay Now"
         name="Pay With Credit Card"
         billingAddress
-        shippingAddress
         amount={priceForStripe}
         description={`Your total is $${product.cartTotal}`}
         token={payNow}
       />
+    </div>
     </div>
   );
 }
