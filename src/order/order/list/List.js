@@ -17,14 +17,15 @@ const columns= [
         </div>
       );
     }},
-    { field: 'business', headerName: 'Business ID', width: 130 ,
-    renderCell: (params) => {
-      return (
-        <div>
-          {params.row.business.name}
-        </div>
-      );
-    }},
+  //   { field: 'business', headerName: 'Business ID', width: 130 ,
+  //   // renderCell: (params) => {
+  //   //   return (
+  //   //     <div>
+  //   //       {params.row.business.name}
+  //   //     </div>
+  //   //   );
+  //   // }},
+  // },  
     { field: 'total_amount', headerName: 'Total Amount', width: 130 },
     { field: 'email', headerName: 'Email', width: 130 },
     { field: 'address', headerName: 'Address', width: 130 },
@@ -43,6 +44,7 @@ const List=()=>{
       const userId=decoded._id;
         axios.get(`http://localhost:4500/api/order/getPaymentByUserId?id=${userId}`)
         .then(res=>{
+          console.log("res",res.data);
           setProduct(res.data);
         })
         .catch(err=>{

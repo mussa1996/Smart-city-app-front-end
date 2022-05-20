@@ -22,9 +22,9 @@ const PlaceDetails = ({ place, selected, refProp }) => {
           <Rating name="read-only" value={Number(place.rating)} readOnly />
         </Box>
         
-        {place?.awards?.map((award) => (
+        {place?.award?.map((award) => (
           <Box display="flex" justifyContent="space-between" my={1} alignItems="center">
-            <img src={award.images.small} />
+            <img src={award.images} style={{height : '50px', width : '50px'}}/>
             <Typography variant="subtitle2" color="textSecondary">{award.display_name}</Typography>
           </Box>
         ))}
@@ -43,7 +43,7 @@ const PlaceDetails = ({ place, selected, refProp }) => {
         )}
       </CardContent>
       <CardActions>
-        <Link to={`/add-to-cat/${place._id}`}>
+        <Link to={`/add-to-cat/${place._id}`} style={{textDecoration:'none'}}>
         <Button size="small" color="primary"  onClick={()=>place.id}>
           Product 
         </Button>

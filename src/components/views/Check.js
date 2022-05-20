@@ -30,7 +30,7 @@ else{
       <div className="col-12 col-md-7 col-lg-6 auth-main-col text-center">
         <div className="d-flex flex-column align-content-end">
           <div className="auth-body mx-auto">
-            <h1>choose your role</h1>
+            <h1 style={{fontSize:'20px',textAlign:'center', lineHeight:'1.5em', paddingBottom:'20px', fontFamily:"Playfair Display", textTransform:'uppercase',letterSpacing: '2px', color:'#111',marginTop:'10px'}}>choose your role</h1>
             <div className="auth-form-container text-start">
               <form
                 className="auth-form"

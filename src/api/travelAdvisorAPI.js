@@ -22,6 +22,7 @@ console.log("test api",data)
   }
 };
 
+
 export const getWeatherData = async (lat, lng) => {
   try {
     if (lat && lng) {

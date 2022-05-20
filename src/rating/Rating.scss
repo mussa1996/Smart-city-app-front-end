@@ -1,0 +1,62 @@
+.card-rating {
+  background: linear-gradient(135deg, #474c62, #383c4d);
+  border-radius: 12px;
+  box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  margin-left: 350px;
+  margin-right: 350px;
+  margin-top: 100px;
+  .card-header {
+    color: #fbfbfc;
+    background: linear-gradient(135deg, #3c4256, #313747);
+    text-align: center;
+    padding: 1em;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 32px 64px;
+    
+    .stars {
+      margin-bottom: 40px;
+
+      i {
+        font-size: 2.6em;
+        margin: 8px;
+        cursor: pointer;
+        color: #292f3d;
+        transition: color 0.5s;
+
+        &.in-rate {
+          color: #ffcf87;
+        }
+
+        &.in-hover {
+          color: rgba(255, 207, 135, 0.3);
+        }
+      }
+    }
+  }
+  .btn-rate {
+    background: linear-gradient(135deg, #3c4256, #313747);
+    border: none;
+    border-radius: 12px;
+    color: #fbfbfc;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    transition: background 0.5s;
+
+    &:hover {
+      background: linear-gradient(135deg, #3c4256, #313747);
+    }
+  }
+    
+  
+}

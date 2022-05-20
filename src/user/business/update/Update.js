@@ -69,7 +69,6 @@ const handleSubmit=async(e)=>{
         console.log(err.message);
     })
 }
-    
 
     return (
         <div className="container">

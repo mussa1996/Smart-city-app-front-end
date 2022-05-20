@@ -27,7 +27,7 @@ const Cart = (props) => {
                             return(
                                 <tr key={index}>
                                     <td>
-                                        <img src={item.photo} style={{height:'6rem'}}/>
+                                        <img src={item.photo} style={{height:'70px',width:'70px'}}/>
                                     </td>
                                     <td>
                                         {item.name}

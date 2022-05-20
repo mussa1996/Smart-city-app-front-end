@@ -59,8 +59,8 @@ function Login(props) {
 
       <div className="col-12 col-md-7 col-lg-6 auth-main-col text-center">
         <div className="d-flex flex-column align-content-end">
-          <div className="auth-body mx-auto">
-            <h1>Login to your account</h1>
+          <div className="auth-body mx-auto" >
+            <h1 style={{fontSize:'20px',textAlign:'center', lineHeight:'1.5em', paddingBottom:'20px', fontFamily:"Playfair Display", textTransform:'uppercase',letterSpacing: '2px', color:'#111',marginTop:'10px'}}>Login to your account</h1>
             <div className="auth-form-container text-start">
               <form
                 className="auth-form"
@@ -135,7 +135,7 @@ function Login(props) {
                     </div>
                     <div className="col-6">
                       <div className="forgot-password text-end">
-                        <Link to="/forgot-password">Forgot password?</Link>
+                        <Link to="/forgot-password" style={{textDecoration:'none',fontWeight:'bold'}}>Forgot password?</Link>
                       </div>
                     </div>
                   </div>
@@ -161,14 +161,14 @@ function Login(props) {
               <hr />
                 
               <div className="auth-option text-center pt-2">
-              <Link className="text-link" to="/">
+              <Link className="text-link" to="/" style={{textDecoration:'none',fontWeight:'bold'}}>
               <h>
                   Home
                 </h>
                 </Link>
                 <br />
                 No Account?{" "}
-                <Link className="text-link" to="/check">
+                <Link className="text-link" to="/check" style={{textDecoration:'none',fontWeight:'bold'}}>
                   Sign up{" "}
                 </Link>
               </div>

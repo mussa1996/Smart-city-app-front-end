@@ -56,6 +56,7 @@ import OrderHeader from "../order/orderDashboard/Header"
 import OrderMenu from "../order/orderDashboard/Menu"
 import OrderFooter from "../order/orderDashboard/Footer"
 import CartList from "../helper/ListCart"
+import Rating from "../rating/Rating"
 export default function Routers() {
   const { darkMode } = useContext(DarkModeContext);
 
@@ -90,6 +91,7 @@ export default function Routers() {
             <ProtectedRoute path="/order-business" component={OrderListByBusiness} />
             <ProtectedRoute path="/order/single" component={OrderSingle} />
             <Route path="/cart-list" component={CartList} />
+            <ProtectedRoute path="/rating" component={Rating} />
 
             {/* admin routes */}
             <ProtectedRoute path="/admin-dashboard" >

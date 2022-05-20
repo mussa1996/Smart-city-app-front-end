@@ -12,17 +12,17 @@ const Header = ({ onPlaceChanged, onLoad }) => {
   return (
     <AppBar position="static">
       <Toolbar className={classes.toolbar}>
-        <Typography variant="h5" className={classes.title}>
+        <Typography variant="h5" className={classes.title} style={{fontWeight:'bold'}}>
          Smart City App
         </Typography>
 
           
         <Box display="flex">
-        <button >
-        <Link to="/login"> get started </Link>
+        <button  style={{backgroundColor:"#e7e7e7",borderRadius:"10px",color:"white",padding:"10px",marginLeft:"10px",marginRight:"20px"}}>
+        <Link to="/login" style={{textDecoration:'none'}}> get started </Link>
 </button>
          
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" className={classes.title} style={{fontWeight:'bold'}}>
             Explore new places
           </Typography>
           <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>

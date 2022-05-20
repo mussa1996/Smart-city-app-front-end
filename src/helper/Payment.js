@@ -14,7 +14,7 @@ function App() {
   const history = useHistory();
 const data=localStorage.getItem('react-use-cart');
 const product = JSON.parse(data);
-const businessId=product.items[0].business_id;
+const businessId=product.items[0].business_id._id;
   const publishableKey =process.env.REACT_APP_STRIPE_PUBLIC_KEY
    
   const priceForStripe = product.cartTotal * 100;
@@ -56,7 +56,7 @@ const businessId=product.items[0].business_id;
         },
       });
       if (response.status === 200) {
-        history.push('/order-dashboard');
+        history.push('/rating');
         handleSuccess();
       }
     } catch (error) {
