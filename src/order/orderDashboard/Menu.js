@@ -40,17 +40,17 @@ export default class Menu extends Component {
   
     {/* Brand Logo */}
     <a href="/order-dashboard" className="brand-link">
-      <span className="brand-text font-weight-light">Smart City</span>
+      <span className="brand-text font-weight-light" style={{fontWeight:'bold',color:'white',fontSize:'20px',textDecoration:'none'}}>Smart City</span>
     </a>
     {/* Sidebar */}
     <div className="sidebar">
       {/* Sidebar user panel (optional) */}
       <div className="user-panel mt-3 pb-3 mb-3 d-flex">
         <div className="image">
-          <img src={this.state.photo} className="img-circle elevation-2" alt="User Image"/>
+          <img src={this.state.photo} className="img-circle elevation-2" alt="User Image" style={{height:"50px",width:'50px'}}/>
         </div>
         <div className="info">
-          <a href="/order-dashboard" className="d-block" >{this.state.user}</a>
+          <a href="/order-dashboard" className="d-block" style={{fontWeight:'bold',color:'white',fontSize:'20px',textDecoration:'none'}} >{this.state.user}</a>
         </div>
       </div>
       {/* Sidebar Menu */}

@@ -9,7 +9,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import jwt_decode from "jwt-decode";
 const columns= [
     { field: '_id', headerName: 'ID', width: 70, hide: true },
-    { field: 'user', headerName: 'User ID', width: 130 ,
+    { field: 'user', headerName: 'User Name', width: 130 ,
     renderCell: (params) => {
       return (
         <div>

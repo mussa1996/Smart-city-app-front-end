@@ -95,10 +95,6 @@ import Footer from './Footer';
 
 const Dashboard = ()=>{
    return(
-    //    <div class="wrapper">
-         
-    //        <Main />
-    //    </div>
     <AdmDashboardWrapper className="wrapper">
         
         <Menu />

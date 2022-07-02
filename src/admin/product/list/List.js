@@ -12,11 +12,13 @@ const columns= [
     { field: 'name', headerName: 'Product Name', width: 130 },
     { field: 'price', headerName: 'Product Price', width: 130 },
     { field: 'description', headerName: 'Description', width: 130 },
-    { field: 'business_id', headerName: 'Business Name', width: 130,
+    { field: 'business_id', headerName: 'Business Id', width: 130,
     renderCell: (params) => {
+      console.log(params.row);
       return (
         <div>
-          {params.row.business_id.name}
+
+          {params.row.business_id}
         </div>
       );
     }

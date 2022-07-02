@@ -65,7 +65,7 @@ console.log("user",product);
                   <span className="itemValue">{rowData.description}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Business:</span>
+                  <span className="itemKey">Business Id:</span>
                   <span className="itemValue">{rowData.business_id}</span>
                 </div>
                 

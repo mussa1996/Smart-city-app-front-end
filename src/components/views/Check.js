@@ -43,7 +43,7 @@ else{
                   <select name="classSelect" onChange={(e) => setRole(e.target.value)}  >
                   <option value="">Please choose role</option>
                     <option value="business">Business</option>
-                    <option value="user">User</option>
+                    <option value="user">Customer</option>
                     <option value="others">Other</option>
                   </select>
                 </div>

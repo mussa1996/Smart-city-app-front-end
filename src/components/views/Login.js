@@ -143,7 +143,7 @@ function Login(props) {
                     <div className="radio  mb-3">
                     <div onClick={handleChange}>
                         <input type="radio" value="admin" name="role" id="role" /> Admin
-                        <input type="radio" value="user" name="role" id="role"  /> User
+                        <input type="radio" value="user" name="role" id="role"  /> Customer
                         <input type="radio" value="business" name="role" id="role"  /> Business
                     </div>
 

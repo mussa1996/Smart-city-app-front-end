@@ -32,7 +32,7 @@ const Single = () => {
 }
 ,[])
 const rowData=product
-console.log("user",product);
+console.log("testing name",rowData);
   return (
     <div className="single">
       {/* <Sidebar /> */}
@@ -65,7 +65,7 @@ console.log("user",product);
                   <span className="itemValue">{rowData.description}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Business:</span>
+                  <span className="itemKey">Business Id:</span>
                   <span className="itemValue">{rowData.business_id}</span>
                 </div>
                 

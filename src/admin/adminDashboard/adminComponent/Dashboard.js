@@ -99,8 +99,8 @@ export default class Dashboard extends Component {
             </div>
           </div>
           {/* ./col */}
-          <div className="col-lg-3 col-6">
-            {/* small box */}
+          {/* <div className="col-lg-3 col-6">
+            
             <div className="small-box bg-danger">
               <div className="inner">
               <h3>{this.state.message3}</h3>
@@ -111,7 +111,7 @@ export default class Dashboard extends Component {
               </div>
               <a href="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right" /></a>
             </div>
-          </div>
+          </div> */}
           {/* ./col */}
            </div>
       </div>

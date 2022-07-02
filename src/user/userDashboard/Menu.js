@@ -16,7 +16,7 @@ export default class Menu extends Component {
   user: '',
   decoded: '',
   photo: ''};
-
+  
   
   }
   
@@ -34,23 +34,24 @@ export default class Menu extends Component {
   }
     render() {
         return (
+        
           
           <div>
   <aside className="main-sidebar sidebar-dark-primary elevation-4">
   
     {/* Brand Logo */}
     <a href="/user-dashboard" className="brand-link">
-      <span className="brand-text font-weight-light">Smart City</span>
+      <span className="brand-text font-weight-light" style={{fontWeight:'bold',color:'white',fontSize:'20px',textDecoration:'none'}}>Smart City</span>
     </a>
     {/* Sidebar */}
     <div className="sidebar">
       {/* Sidebar user panel (optional) */}
       <div className="user-panel mt-3 pb-3 mb-3 d-flex">
         <div className="image">
-          <img src={this.state.photo} className="img-circle elevation-2" alt="User Image"/>
+          <img src={this.state.photo} className="img-circle elevation-2" alt="User Image" style={{height:"50px",width:'50px'}}/>
         </div>
         <div className="info">
-          <a href="/user-dashboard" className="d-block" >{this.state.user}</a>
+          <a href="/user-dashboard" className="d-block" style={{fontWeight:'bold',color:'white',fontSize:'20px',textDecoration:'none'}} >{this.state.user}</a>
         </div>
       </div>
       {/* Sidebar Menu */}
@@ -106,12 +107,12 @@ export default class Menu extends Component {
                   <p>Awards</p>
                 </a>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a href="/user/service/list" className="nav-link">
                   <i className="far fa-circle nav-icon" />
                   <p>Internal_service</p>
                 </a>
-              </li>
+              </li> */}
             </ul>
           </li>
           <li className="nav-item has-treeview">

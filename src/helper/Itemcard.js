@@ -12,7 +12,7 @@ const Itemcard = (props) => {
                  <h3 class="card-title" style={{color:'black',marginLeft:'20px'}}>{props.item.name}</h3>
                  <br/>
                  <br/>
-                 <h5 class="card-title" style={{color:'black',marginLeft:'20px'}}>{props.item.description}</h5>
+                 <h5 class="card-title" style={{color:'grey',marginLeft:'20px'}}>{props.item.description}</h5>
                  
                  <br/>
                  <br/>

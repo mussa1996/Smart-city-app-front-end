@@ -45,10 +45,9 @@ function App() {
 
         <div class="card-body">
           <div class="stars">
-            <h2>{selectedRate}</h2>
             {possibleRates.map(rate => <i
               key={rate}
-              class={"fas fa-star " 
+              class={"fas fa-star star "  
               + ((rate <= selectedRate) ? 'in-rate ' : '')
               + ((rate <= hoveredRate) ? 'in-hover' : '')}
               onClick={() => setSelectedRate(rate)}

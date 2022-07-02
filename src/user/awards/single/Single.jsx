@@ -32,6 +32,7 @@ const Single = () => {
 }
 ,[])
 const rowData=award
+console.log("testing name", rowData)
 console.log("user",award);
   return (
     <div className="single">
@@ -65,8 +66,8 @@ console.log("user",award);
                   <span className="itemValue">{rowData.year}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Business Name:</span>
-                  <span className="itemValue">{rowData.name}</span>
+                  <span className="itemKey">Business Id:</span>
+                  <span className="itemValue">{rowData.business_id}</span>
                 </div>
                 
               </div>
